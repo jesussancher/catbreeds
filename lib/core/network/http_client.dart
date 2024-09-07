@@ -4,7 +4,6 @@ import 'package:catbreeds/core/network/i_http_client.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 
 class HttpClient implements IHttpClient {
   @override
@@ -13,7 +12,7 @@ class HttpClient implements IHttpClient {
     final Uri uri = Uri.parse(url);
 
     try {
-      final Response response = await http.get(uri);
+      final http.Response response = await http.get(uri);
       final data = jsonDecode(response.body);
       final ResponseSuccess responseSuccess =
           ResponseSuccess(originalData: data, statusCode: response.statusCode);
@@ -30,7 +29,7 @@ class HttpClient implements IHttpClient {
       {required String url, required Map<String, dynamic> body}) async {
     final Uri uri = Uri.parse(url);
     try {
-      final Response response = await http.post(uri, body: body);
+      final http.Response response = await http.post(uri, body: body);
       final data = jsonDecode(response.body);
       final ResponseSuccess responseSuccess =
           ResponseSuccess(originalData: data, statusCode: response.statusCode);
