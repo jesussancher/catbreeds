@@ -10,7 +10,6 @@ class HttpClient implements IHttpClient {
   Future<Either<ResponseError, ResponseSuccess>> get(
       {required String url}) async {
     final Uri uri = Uri.parse(url);
-
     try {
       final http.Response response = await http.get(uri);
       final data = jsonDecode(response.body);
