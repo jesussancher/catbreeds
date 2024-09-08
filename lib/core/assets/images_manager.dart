@@ -1,3 +1,3 @@
 class ImagesManager {
-  static String get logo => 'assets/images/logo.svg';
+  static String get logoSVG => 'assets/images/logo.svg';
 }

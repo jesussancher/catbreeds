@@ -16,7 +16,7 @@ class _SplashViewState extends State<SplashView> {
   Color backgroundColor = CustomColor.foregroundColor;
 
   void animateSplash() async {
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 1), () {
       setState(() {
         scaleFactor = 1.5;
         opacityLevel = 1;
@@ -71,7 +71,7 @@ class _SplashViewState extends State<SplashView> {
                 scale: scaleFactor,
                 duration: const Duration(seconds: seconds),
                 child: SvgPicture.asset(
-                  ImagesManager.logo,
+                  ImagesManager.logoSVG,
                   colorFilter:
                       ColorFilter.mode(CustomColor.mainColor, BlendMode.srcIn),
                 ),
