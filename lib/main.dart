@@ -1,10 +1,14 @@
 import 'package:catbreeds/core/network/http_client.dart';
 import 'package:catbreeds/core/router/routes.dart';
+import 'package:catbreeds/presentation/home_viewmodel.dart';
 import 'package:catbreeds/ui/pages/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => HomeViewModel()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -32,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFC49A6C)),
         useMaterial3: true,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/',
       routes: routes,
     );
   }
