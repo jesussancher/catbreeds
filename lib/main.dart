@@ -1,7 +1,5 @@
-import 'package:catbreeds/core/network/http_client.dart';
 import 'package:catbreeds/core/router/routes.dart';
 import 'package:catbreeds/presentation/home_viewmodel.dart';
-import 'package:catbreeds/ui/pages/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,8 +20,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    final client = HttpClient();
-    // client.get(url: 'https://api.thecatapi.com/v1/breeds');
   }
 
   // This widget is the root of your application.
