@@ -11,7 +11,7 @@ class HomeViewModel extends BaseViewmodel {
   }
 
   String _searchQuery = 'go';
-  List<Cat> _catsList = [];
+  List<Cat> _catsList = [Cat()];
 
   static const int _pageSize = 20;
 
@@ -26,7 +26,7 @@ class HomeViewModel extends BaseViewmodel {
 
   Future<void> _fetchPage(int pageKey) async {
     try {
-      final List<Cat> newItems = [];
+      final List<Cat> newItems = [Cat(), Cat(), Cat(), Cat(), Cat()];
       final client = HttpClient();
       client.get(url: 'https://api.thecatapi.com/v1/breeds');
       final isLastPage = newItems.length < _pageSize;

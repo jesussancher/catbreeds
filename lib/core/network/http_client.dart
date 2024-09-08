@@ -11,6 +11,7 @@ class HttpClient implements IHttpClient {
       {required String url}) async {
     final Uri uri = Uri.parse(url);
     try {
+      print('GETTING');
       final http.Response response = await http.get(uri);
       final data = jsonDecode(response.body);
       final ResponseSuccess responseSuccess =

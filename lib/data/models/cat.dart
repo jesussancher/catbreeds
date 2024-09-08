@@ -11,7 +11,7 @@ class Cat {
   final String? name;
   final String? origin;
   final String? description;
-  final String? eferenceImageId;
+  final String? referenceImageId;
   final String? countryCode;
   final String? lifeSpan;
   final bool? indoor;
@@ -44,7 +44,7 @@ class Cat {
       this.name,
       this.origin,
       this.description,
-      this.eferenceImageId,
+      this.referenceImageId,
       this.countryCode,
       this.lifeSpan,
       this.indoor,
