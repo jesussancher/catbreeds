@@ -25,11 +25,11 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(vertical: 16),
             child: PagedListView<int, Cat>(
               pagingController: model.pagingController,
               builderDelegate: PagedChildBuilderDelegate<Cat>(
-                itemBuilder: (context, item, index) => CatCard(),
+                itemBuilder: (context, cat, index) => CatCard(cat),
               ),
             ),
           )

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:catbreeds/core/network/i_http_client.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
@@ -8,14 +9,27 @@ import 'package:http/http.dart' as http;
 class HttpClient implements IHttpClient {
   @override
   Future<Either<ResponseError, ResponseSuccess>> get(
-      {required String url}) async {
+      {required String url, String? page = '1', String? limit = '10'}) async {
+    final queryParams = {
+      'order': 'Desc',
+    };
+    if (limit != null) {
+      queryParams['limit'] = limit;
+    }
+    if (page != null) {
+      queryParams['page'] = page;
+    }
     final Uri uri = Uri.parse(url);
+    final Uri uriWithQuery = uri.replace(queryParameters: queryParams);
     try {
-      print('GETTING');
-      final http.Response response = await http.get(uri);
+      final http.Response response = await http.get(
+        uriWithQuery,
+        headers: {'x-api-key': String.fromEnvironment('CAP_BREEDS_API_KEY')},
+      );
       final data = jsonDecode(response.body);
-      final ResponseSuccess responseSuccess =
-          ResponseSuccess(originalData: data, statusCode: response.statusCode);
+      final ResponseSuccess responseSuccess = ResponseSuccess(
+          originalData: {'data': data}, statusCode: response.statusCode);
+
       return Right(responseSuccess);
     } catch (e) {
       return Left(ResponseError(

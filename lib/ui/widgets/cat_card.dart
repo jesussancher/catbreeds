@@ -1,11 +1,13 @@
 import 'package:catbreeds/core/assets/colors.dart';
-import 'package:catbreeds/core/assets/images_manager.dart';
+import 'package:catbreeds/data/models/cat.dart';
 import 'package:catbreeds/ui/widgets/chip.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CatCard extends StatelessWidget {
+  final Cat cat;
+  const CatCard(this.cat);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -13,7 +15,7 @@ class CatCard extends StatelessWidget {
         HapticFeedback.selectionClick();
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 4),
+        margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         decoration: BoxDecoration(
             color: CustomColor.cardBackgroundColor,
             borderRadius: BorderRadius.circular(16),
@@ -35,9 +37,13 @@ class CatCard extends StatelessWidget {
               Stack(
                 children: [
                   SizedBox(
-                    height: 100,
+                    height: 130,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     child: Image.network(
-                        'https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg'),
+                      cat.imageUrl ??
+                          'https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   Positioned(
                     right: 0,
@@ -50,14 +56,14 @@ class CatCard extends StatelessWidget {
                       children: Row(
                         children: [
                           CountryFlag.fromCountryCode(
-                            'CO',
+                            cat.countryCode ?? '',
                             width: 14,
                             height: 14,
                             shape: Circle(),
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            'CO',
+                            cat.countryCode ?? '',
                             style: TextStyle(
                               fontSize: 12,
                             ),
@@ -75,7 +81,7 @@ class CatCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Nombre de raza',
+                      cat.name ?? '',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
@@ -88,17 +94,17 @@ class CatCard extends StatelessWidget {
                         Row(
                           children: [
                             ChipWidget(
-                              backgroundColor: Color(0x5218FFFF),
+                              // borderColor: Color(0xFF0F9494),
                               children: Row(
                                 children: [
                                   Icon(
-                                    Icons.handshake_rounded,
+                                    Icons.volunteer_activism_rounded,
                                     size: 12,
                                     color: Color(0xFF0F9494),
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
-                                    '5',
+                                    cat.affectionLevel?.toString() ?? '',
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Color(0xFF0F9494),
@@ -109,8 +115,7 @@ class CatCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 4),
                             ChipWidget(
-                              backgroundColor:
-                                  Color.fromRGBO(76, 175, 79, 0.322),
+                              borderColor: Color.fromRGBO(76, 175, 79, 0.322),
                               children: Row(
                                 children: [
                                   Icon(
@@ -120,7 +125,7 @@ class CatCard extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
-                                    '4',
+                                    cat.energyLevel?.toString() ?? '',
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.green,
@@ -143,7 +148,7 @@ class CatCard extends StatelessWidget {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                '${'14 - 15'.replaceAll(' ', '')} years',
+                                '${cat.lifeSpan?.replaceAll(' ', '')} years',
                                 style: TextStyle(
                                   fontSize: 12,
                                 ),
