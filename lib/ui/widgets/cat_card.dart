@@ -18,7 +18,7 @@ class CatCard extends StatelessWidget {
       lazy: true,
       child: Consumer<CatCardViewModel>(builder: (context, model, child) {
         return FutureBuilder(
-            future: model.getImageUrl(cat.id),
+            future: model.getCatImage(cat),
             builder: (context, snapshot) {
               final String? imageUrl = snapshot.data;
               return GestureDetector(

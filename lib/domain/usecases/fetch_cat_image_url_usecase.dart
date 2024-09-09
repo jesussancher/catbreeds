@@ -20,8 +20,10 @@ class FetchCatImageUrlUseCase
     final Response<String> resposne =
         await remoteRepository.fetchCatImageUrl(params);
     final String? imageUlr = resposne.success?.data;
-    localRepository
+    await localRepository
         .setCatImageUrlById(CatImageUrlParams(id: params.catId, url: imageUlr));
+    print('GOTTEN IMAGEID:  ${params.catId}: ${imageUlr}');
+
     return resposne;
   }
 }

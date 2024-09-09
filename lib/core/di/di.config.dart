@@ -153,6 +153,5 @@ class _$ViewModelModule extends _i24.ViewModelModule {
         _getIt<_i10.FetchCatImageUrlUseCase>(),
         _getIt<_i13.SetCatImageUrlByIdUseCase>(),
         _getIt<_i12.GetCatImageUrlByIdUseCase>(),
-        _getIt<_i8.ListenAllCatsUseCase>(),
       );
 }

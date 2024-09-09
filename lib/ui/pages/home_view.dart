@@ -50,6 +50,7 @@ class MyHomePage extends StatelessWidget {
               crossAxisMargin: 2,
               controller: model.scrollController,
               child: PagedListView<int, Cat>(
+                addRepaintBoundaries: false,
                 scrollController: model.scrollController,
                 pagingController: model.pagingController,
                 builderDelegate: PagedChildBuilderDelegate<Cat>(

@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:catbreeds/data/data_sources/local/i_cats_local_api.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/domain/models/cat_image_url_params.dart';
+import 'package:rxdart/subjects.dart';
 
 class CatsLocalApi implements ICatsLocalApi {
-  StreamController<List<Cat>> _catsListStreamController =
-      StreamController<List<Cat>>();
+  BehaviorSubject<List<Cat>> _catsListStreamController =
+      BehaviorSubject<List<Cat>>.seeded([]);
 
   @override
   void setCatsList(List<Cat> list) {
@@ -14,8 +15,8 @@ class CatsLocalApi implements ICatsLocalApi {
   }
 
   @override
-  void setCatImageUrlById(CatImageUrlParams params) async {
-    final List<Cat> list = await _catsListStreamController.stream.first;
+  Future<void> setCatImageUrlById(CatImageUrlParams params) async {
+    final List<Cat> list = _catsListStreamController.value;
     final int filteredCatIndex = list.indexWhere((cat) => cat.id == params.id);
     final Cat filteredCat = list.elementAt(filteredCatIndex);
     filteredCat.setImageUrl(params.url);
@@ -25,9 +26,8 @@ class CatsLocalApi implements ICatsLocalApi {
 
   @override
   Future<String?> getCatImageUrlById(CatImageUrlParams params) async {
-    final List<Cat> list = await _catsListStreamController.stream.first;
+    final List<Cat> list = _catsListStreamController.value;
     final Cat filteredCat = list.firstWhere((cat) => cat.id == params.id);
-
     return filteredCat.imageUrl;
   }
 }

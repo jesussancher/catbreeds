@@ -8,7 +8,7 @@ abstract class ICatsLocalRepository {
   void setCatsList(List<Cat> list);
 
   /// Set cat image url by id
-  void setCatImageUrlById(CatImageUrlParams params);
+  Future<void> setCatImageUrlById(CatImageUrlParams params);
 
   /// Get cat image url by id
   Future<String?> getCatImageUrlById(CatImageUrlParams params);

@@ -15,7 +15,7 @@ class CatsLocalRepository implements ICatsLocalRepository {
       catsApi.getCatImageUrlById(params);
 
   @override
-  void setCatImageUrlById(CatImageUrlParams params) async =>
+  Future<void> setCatImageUrlById(CatImageUrlParams params) async =>
       catsApi.setCatImageUrlById(params);
 
   @override
