@@ -1,6 +1,6 @@
 import 'package:catbreeds/core/assets/colors.dart';
 import 'package:catbreeds/core/assets/images_manager.dart';
-import 'package:catbreeds/data/models/cat.dart';
+import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/presentation/home_viewmodel.dart';
 import 'package:catbreeds/ui/widgets/cat_card.dart';
 import 'package:flutter/material.dart';

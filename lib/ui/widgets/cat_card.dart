@@ -1,5 +1,5 @@
 import 'package:catbreeds/core/assets/colors.dart';
-import 'package:catbreeds/data/models/cat.dart';
+import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/ui/widgets/chip.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';

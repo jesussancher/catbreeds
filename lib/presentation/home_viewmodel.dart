@@ -1,12 +1,15 @@
 import 'dart:async';
 
-import 'package:catbreeds/core/network/http_client.dart';
-import 'package:catbreeds/data/models/cat.dart';
+import 'package:catbreeds/domain/models/all_cats_params.dart';
+import 'package:catbreeds/domain/models/cat.dart';
+import 'package:catbreeds/domain/models/network/response.dart';
+import 'package:catbreeds/domain/usecases/get_all_cats_paginated_usecase.dart';
 import 'package:catbreeds/presentation/base_viewmodel.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class HomeViewModel extends BaseViewmodel {
-  HomeViewModel() {
+  final GetAllCatsPaginatedUseCase getAllCatsPaginatedUseCase;
+  HomeViewModel(this.getAllCatsPaginatedUseCase) {
     _initListeners();
   }
 
@@ -24,60 +27,19 @@ class HomeViewModel extends BaseViewmodel {
     });
   }
 
-  Future<void> _fetchPage(int pageKey) async {
-    print('pageKey ${pageKey}');
-    // try {
-    List<Cat> newItems = [Cat(), Cat(), Cat(), Cat(), Cat()];
-    final client = HttpClient();
-    final response = await client.get(
-      url: 'https://api.thecatapi.com/v1/breeds',
-      limit: _pageSize.toString(),
-    );
-    if (response.isRight()) {
-      response.fold((_) {}, (data) {
-        newItems = (data.originalData!['data'] as List<dynamic>)
-            .map((json) => Cat.fromJson(json))
-            .toList();
-        Future.forEach(newItems, (item) async {
-          final photoResponse = await client.get(
-            url: 'https://api.thecatapi.com/v1/images/${item.referenceImageId}',
-            limit: _pageSize.toString(),
-          );
-          photoResponse.fold((_) {}, (photoData) {
-            print('ddddd ${photoData.originalData!['data']}');
-            item.setImageUrl(photoData.originalData!['data']['url'] as String?);
-          });
-        });
-
-        print('data::: ${data.originalData}');
-        final isLastPage = newItems.length < _pageSize;
-        if (isLastPage) {
-          _pagingController.appendLastPage(newItems);
-        } else {
-          final nextPageKey = pageKey + newItems.length;
-          _pagingController.appendPage(newItems, nextPageKey);
-        }
-      });
+  Future<void> _fetchPage(int pageNumber) async {
+    final Response<List<Cat>> response = await getAllCatsPaginatedUseCase(
+        AllCatsParams(limit: '10', page: pageNumber.toString()));
+    if (response.succeeded) {
+      final List<Cat> cats = response.success?.data ?? [];
+      final isLastPage = cats.length < _pageSize;
+      if (isLastPage) {
+        _pagingController.appendLastPage(cats);
+      } else {
+        _pagingController.appendPage(cats, pageNumber + 1);
+      }
     }
-    // } catch (error) {
-    //   _pagingController.error = error;
-    //   print('error::: $error');
-    // }
   }
-
-  // final StreamController<User> _userController = StreamController<User>();
-  // Stream<User> get userStream => _userController.stream;
-
-  // // Business logic and data transformation
-  // void updateUserAge(User user, int newAge) {
-  //   final updatedUser = User(name: user.name, age: newAge);
-  //   _userController.add(updatedUser);
-  // }
-
-  // // Dispose the controller to avoid memory leaks
-  // void dispose() {
-  //   _userController.close();
-  // }
 
   String get searchQuery => _searchQuery;
   List<Cat> get catsList => _catsList;

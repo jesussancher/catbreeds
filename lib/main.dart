@@ -1,11 +1,13 @@
+import 'package:catbreeds/core/di/di.dart';
 import 'package:catbreeds/core/router/routes.dart';
 import 'package:catbreeds/presentation/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  configureDependencies();
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => HomeViewModel()),
+    ChangeNotifierProvider(create: (context) => getIt.get<HomeViewModel>()),
   ], child: const MyApp()));
 }
 
@@ -32,7 +34,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFC49A6C)),
         useMaterial3: true,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/',
       routes: routes,
     );
   }

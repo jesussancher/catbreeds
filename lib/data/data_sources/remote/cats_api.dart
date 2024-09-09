@@ -1,0 +1,36 @@
+import 'package:catbreeds/core/network/base_url.dart';
+import 'package:catbreeds/core/network/i_http_client.dart';
+import 'package:catbreeds/data/data_sources/remote/i_cats_api.dart';
+import 'package:catbreeds/domain/models/all_cats_params.dart';
+import 'package:catbreeds/domain/models/cat.dart';
+import 'package:catbreeds/domain/models/network/response.dart';
+
+class CatsApi implements ICatsApi {
+  final IHttpClient httpClient;
+  const CatsApi(
+    this.httpClient,
+  );
+
+  @override
+  Future<Response<List<Cat>>> getCatsPaginated(AllCatsParams params) async {
+    final response = await httpClient.get<List<Cat>>(
+        url: BaseUrl.getAllCats, params: params);
+
+    return response.fold((error) {
+      return Response(error: error);
+    }, (success) {
+      if (success.originalData == null) {
+        return Response(
+            success: ResponseSuccess<List<Cat>>.fromResponse(
+                data: [], response: success));
+      }
+      final List<Cat> catsList =
+          (success.originalData!['data'] as List<dynamic>)
+              .map((json) => Cat.fromJson(json))
+              .toList();
+      return Response(
+          success: ResponseSuccess<List<Cat>>.fromResponse(
+              data: catsList, response: success));
+    });
+  }
+}

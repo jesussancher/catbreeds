@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:catbreeds/data/models/weight.dart';
+import 'package:catbreeds/domain/models/weight.dart';
 
 part 'cat.g.dart';
 

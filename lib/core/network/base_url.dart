@@ -1,3 +1,3 @@
 class BaseUrl {
-  static String getallCats = '';
+  static String getAllCats = 'https://api.thecatapi.com/v1/breeds';
 }
