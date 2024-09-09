@@ -19,17 +19,42 @@ class MyHomePage extends StatelessWidget {
       return Scaffold(
           backgroundColor: CustomColor.backgroundColor,
           appBar: AppBar(
+            backgroundColor: CustomColor.backgroundColor,
             title: SvgPicture.asset(
               ImagesManager.logoSVG,
               width: 100,
             ),
+            actions: [
+              AnimatedOpacity(
+                opacity: model.scrolled ? 1 : 0,
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.ease,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.search,
+                      color: CustomColor.foregroundColor,
+                    ),
+                    onPressed: () {},
+                  ),
+                ),
+              )
+            ],
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: PagedListView<int, Cat>(
-              pagingController: model.pagingController,
-              builderDelegate: PagedChildBuilderDelegate<Cat>(
-                itemBuilder: (context, cat, index) => CatCard(cat),
+            child: RawScrollbar(
+              thumbColor: CustomColor.mainColor,
+              radius: const Radius.circular(8),
+              crossAxisMargin: 2,
+              controller: model.scrollController,
+              child: PagedListView<int, Cat>(
+                scrollController: model.scrollController,
+                pagingController: model.pagingController,
+                builderDelegate: PagedChildBuilderDelegate<Cat>(
+                  itemBuilder: (context, cat, index) => CatCard(cat),
+                ),
               ),
             ),
           )

@@ -8,10 +8,23 @@ import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
 class HttpClient implements IHttpClient {
+  String _addDynamicAddressParams(String tempUrl, Params? params) {
+    return params != null
+        ? params.toJson().entries.fold(tempUrl, (
+            String previousUrl,
+            MapEntry<String, dynamic> currentParam,
+          ) {
+            final String key = currentParam.key;
+            final String value = currentParam.value.toString();
+            return previousUrl.replaceAll('{$key}', value);
+          })
+        : tempUrl;
+  }
+
   @override
   Future<Either<ResponseError, ResponseSuccess<T>>> get<T>(
       {required String url, Params? params}) async {
-    final Uri uri = Uri.parse(url);
+    final Uri uri = Uri.parse(_addDynamicAddressParams(url, params));
     final Uri uriWithQuery = uri.replace(queryParameters: params?.toJson());
     try {
       final http.Response response = await http.get(
