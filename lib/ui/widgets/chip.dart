@@ -8,6 +8,7 @@ class ChipWidget extends StatelessWidget {
   final Color? foregroundColor;
   final Color? borderColor;
   final BorderRadius? borderRadius;
+  final List<BoxShadow>? boxShadow;
 
   const ChipWidget({
     this.text,
@@ -16,6 +17,7 @@ class ChipWidget extends StatelessWidget {
     this.foregroundColor,
     this.borderColor,
     this.borderRadius,
+    this.boxShadow,
   });
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class ChipWidget extends StatelessWidget {
         color: backgroundColor ?? CustomColor.backgroundColor,
         borderRadius: borderRadius ?? BorderRadius.circular(4),
         border: borderColor != null ? Border.all(color: borderColor!) : null,
+        boxShadow: boxShadow,
       ),
       child: children ??
           Text(

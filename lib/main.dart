@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      showSemanticsDebugger: false,
+      debugShowCheckedModeBanner: false,
       title: 'CatBreeds',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFC49A6C)),

@@ -10,7 +10,7 @@ class CatCardImageLoader extends StatelessWidget {
         child: Container(
           height: 130,
           color: Colors.grey[300],
-          width: MediaQuery.of(context).size.width * 0.35,
+          width: MediaQuery.of(context).size.width * 0.33,
         ));
   }
 }

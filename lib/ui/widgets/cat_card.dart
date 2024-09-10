@@ -1,10 +1,13 @@
 import 'package:catbreeds/core/assets/colors.dart';
+import 'package:catbreeds/core/assets/images_manager.dart';
 import 'package:catbreeds/core/di/di.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/presentation/cat_card_viewmodel.dart';
 import 'package:catbreeds/ui/widgets/chip.dart';
+import 'package:catbreeds/ui/widgets/custom_icon.dart';
 import 'package:catbreeds/ui/widgets/loaders/cat_card_image_loader.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -30,67 +33,35 @@ class CatCard extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                   decoration: BoxDecoration(
                       color: CustomColor.cardBackgroundColor,
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(
                           color: CustomColor.shadowColor,
-                          blurRadius: 5,
+                          blurRadius: 10,
                         )
                       ]),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Stack(
-                          children: [
-                            (imageUrl == null)
-                                ? CatCardImageLoader()
-                                : SizedBox(
-                                    height: 130,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.35,
-                                    child: Image.network(
-                                      imageUrl,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                            Positioned(
-                              right: 0,
-                              bottom: 4,
-                              child: ChipWidget(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(6),
-                                  bottomLeft: Radius.circular(6),
-                                ),
-                                children: Row(
-                                  children: [
-                                    CountryFlag.fromCountryCode(
-                                      cat.countryCode ?? '',
-                                      width: 14,
-                                      height: 14,
-                                      shape: Circle(),
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      cat.countryCode ?? '',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ],
+                        (imageUrl == null)
+                            ? CatCardImageLoader()
+                            : SizedBox(
+                                height: 130,
+                                width: MediaQuery.of(context).size.width * 0.33,
+                                child: Image.network(
+                                  imageUrl,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
                         Container(
                           padding:
                               EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 cat.name ?? '',
@@ -99,80 +70,46 @@ class CatCard extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                               ),
-                              const SizedBox(height: 8),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      ChipWidget(
-                                        // borderColor: Color(0xFF0F9494),
-                                        children: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.volunteer_activism_rounded,
-                                              size: 12,
-                                              color: Color(0xFF0F9494),
-                                            ),
-                                            const SizedBox(width: 4),
-                                            Text(
-                                              cat.affectionLevel?.toString() ??
-                                                  '',
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                color: Color(0xFF0F9494),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(width: 4),
-                                      ChipWidget(
-                                        borderColor:
-                                            Color.fromRGBO(76, 175, 79, 0.322),
-                                        children: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.battery_5_bar_rounded,
-                                              size: 12,
-                                              color: Colors.green,
-                                            ),
-                                            const SizedBox(width: 4),
-                                            Text(
-                                              cat.energyLevel?.toString() ?? '',
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                color: Colors.green,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                  CountryFlag.fromCountryCode(
+                                    cat.countryCode ?? '',
+                                    width: 12,
+                                    height: 12,
+                                    shape: Circle(),
                                   ),
-                                  const SizedBox(height: 4),
-                                  ChipWidget(
-                                    backgroundColor:
-                                        CustomColor.transparentColor,
-                                    children: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.favorite,
-                                          size: 12,
-                                          color: Colors.red,
-                                        ),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          '${cat.lifeSpan?.replaceAll(' ', '')} years',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    cat.origin ?? '',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: CustomColor.foreground500Color),
                                   ),
                                 ],
-                              )
+                              ),
+                              const SizedBox(height: 12),
+                              Row(
+                                children: [
+                                  _ChipWithIcon(
+                                    value: cat.intelligence?.toString() ?? '',
+                                    iconName: ImagesManager.intelligenceIcon,
+                                    color: Color(0xFF0F9494),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  _ChipWithIcon(
+                                    value: cat.energyLevel?.toString() ?? '',
+                                    iconName: ImagesManager.energyIcon,
+                                    color: Colors.green,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  _ChipWithIcon(
+                                    value:
+                                        '${cat.lifeSpan?.replaceAll(' ', '')} yrs',
+                                    iconName: ImagesManager.lifeIcon,
+                                    color: Colors.red,
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
@@ -183,6 +120,59 @@ class CatCard extends StatelessWidget {
               );
             });
       }),
+    );
+  }
+}
+
+class _ChipWithIcon extends StatelessWidget {
+  final String iconName;
+  final String value;
+  final Color color;
+
+  const _ChipWithIcon({
+    required this.iconName,
+    required this.value,
+    required this.color,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return ChipWidget(
+      borderRadius: BorderRadius.circular(14),
+      boxShadow: [
+        BoxShadow(
+          color: CustomColor.shadowColor,
+          blurRadius: 10,
+        )
+      ],
+      children: Container(
+        padding: EdgeInsets.all(2),
+        child: Row(
+          children: [
+            Container(
+              height: 20,
+              width: 20,
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: color.withAlpha(30),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: CustomIcon(
+                icon: iconName,
+                color: color,
+              ),
+            ),
+            const SizedBox(width: 6),
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(width: 4),
+          ],
+        ),
+      ),
     );
   }
 }

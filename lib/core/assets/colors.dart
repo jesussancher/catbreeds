@@ -2,7 +2,10 @@ import 'dart:ui';
 
 class CustomColor {
   static Color get backgroundColor => Color(0xFFFFFFF9);
+  static Color get backgroundEnphasisColor =>
+      Color.fromARGB(255, 242, 242, 237);
   static Color get foregroundColor => Color(0xFF130C00);
+  static Color get foreground500Color => Color.fromARGB(255, 124, 123, 123);
   static Color get shadowColor => Color(0x345E5E5E);
   static Color get borderColor => Color(0x395E5E5E);
   static Color get cardBackgroundColor => Color(0xFFFFFFF9);

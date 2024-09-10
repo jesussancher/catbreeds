@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:catbreeds/core/assets/colors.dart';
 import 'package:catbreeds/core/assets/images_manager.dart';
+import 'package:catbreeds/ui/pages/home_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +40,9 @@ class _SplashViewState extends State<SplashView> {
 
   void goToHome() {
     Timer(Duration(seconds: 7), () {
-      Navigator.of(context).pushReplacementNamed('/');
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomeView()),
+          (Route<dynamic> route) => false);
     });
   }
 
