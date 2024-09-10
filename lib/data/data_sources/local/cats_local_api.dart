@@ -22,7 +22,6 @@ class CatsLocalApi implements ICatsLocalApi {
     final bool existsInQeue = await getCatIsInQeue(params);
     if (existsInQeue || params.id == null) return;
     final List<String> newList = _qeueImageCatsIdStreamController.value;
-
     newList.add(params.id!);
     _qeueImageCatsIdStreamController.add(newList);
   }

@@ -25,8 +25,8 @@ import '../../domain/usecases/get_cat_image_url_by_id_usecase.dart' as _i12;
 import '../../domain/usecases/listen_all_cats_usecase.dart' as _i8;
 import '../../domain/usecases/set_all_cats_usecase.dart' as _i11;
 import '../../domain/usecases/set_cat_image_url_by_id_usecase.dart' as _i13;
-import '../../presentation/cat_card_viewmodel.dart' as _i15;
-import '../../presentation/home_viewmodel.dart' as _i14;
+import '../../presentation/cat_card_viewmodel.dart' as _i14;
+import '../../presentation/home_viewmodel.dart' as _i15;
 import '../network/i_http_client.dart' as _i3;
 import 'module/api_module.dart' as _i17;
 import 'module/base_module.dart' as _i16;
@@ -68,8 +68,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => useCaseModule.getCatImageUrlByIdUseCase);
     gh.factory<_i13.SetCatImageUrlByIdUseCase>(
         () => useCaseModule.setCatImageUrlByIdUseCase);
-    gh.factory<_i14.HomeViewModel>(() => viewModelModule.homeViewmodel);
-    gh.factory<_i15.CatCardViewModel>(() => viewModelModule.catCardViewmodel);
+    gh.factory<_i14.CatCardViewModel>(() => viewModelModule.catCardViewmodel);
+    gh.factory<_i15.HomeViewModel>(() => viewModelModule.homeViewmodel);
     return this;
   }
 }
@@ -142,16 +142,15 @@ class _$ViewModelModule extends _i24.ViewModelModule {
   final _i1.GetIt _getIt;
 
   @override
-  _i14.HomeViewModel get homeViewmodel => _i14.HomeViewModel(
-        _getIt<_i7.GetAllCatsPaginatedUseCase>(),
-        _getIt<_i8.ListenAllCatsUseCase>(),
-        _getIt<_i11.SetAllCatsUseCase>(),
+  _i14.CatCardViewModel get catCardViewmodel => _i14.CatCardViewModel(
+        _getIt<_i10.FetchCatImageUrlUseCase>(),
+        _getIt<_i12.GetCatImageUrlByIdUseCase>(),
       );
 
   @override
-  _i15.CatCardViewModel get catCardViewmodel => _i15.CatCardViewModel(
-        _getIt<_i10.FetchCatImageUrlUseCase>(),
-        _getIt<_i13.SetCatImageUrlByIdUseCase>(),
-        _getIt<_i12.GetCatImageUrlByIdUseCase>(),
+  _i15.HomeViewModel get homeViewmodel => _i15.HomeViewModel(
+        _getIt<_i7.GetAllCatsPaginatedUseCase>(),
+        _getIt<_i8.ListenAllCatsUseCase>(),
+        _getIt<_i11.SetAllCatsUseCase>(),
       );
 }

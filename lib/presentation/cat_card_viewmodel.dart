@@ -6,17 +6,14 @@ import 'package:catbreeds/domain/models/cat_image_url_params.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
 import 'package:catbreeds/domain/usecases/get_cat_image_url_by_id_usecase.dart';
 import 'package:catbreeds/domain/usecases/fetch_cat_image_url_usecase.dart';
-import 'package:catbreeds/domain/usecases/set_cat_image_url_by_id_usecase.dart';
 import 'package:catbreeds/presentation/base_viewmodel.dart';
 
 class CatCardViewModel extends BaseViewModel {
   final FetchCatImageUrlUseCase fetchCatImageUrlUseCase;
-  final SetCatImageUrlByIdUseCase setCatImageUrlByIdUseCase;
   final GetCatImageUrlByIdUseCase getCatImageUrlByIdUseCase;
 
   CatCardViewModel(
     this.fetchCatImageUrlUseCase,
-    this.setCatImageUrlByIdUseCase,
     this.getCatImageUrlByIdUseCase,
   );
 
