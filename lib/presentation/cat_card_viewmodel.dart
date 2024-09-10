@@ -21,7 +21,8 @@ class CatCardViewModel extends BaseViewModel {
   );
 
   Future<String?> getCatImage(Cat cat) async {
-    final String? imageUrl = await getImageUrl(cat.id);
+    final String? imageUrl =
+        await getCatImageUrlByIdUseCase(CatImageUrlParams(id: cat.id));
     if (imageUrl != null) return imageUrl;
     if (cat.referenceImageId == null || cat.id == null) return null;
     final Response<String> response = await fetchCatImageUrlUseCase(
@@ -33,7 +34,4 @@ class CatCardViewModel extends BaseViewModel {
     }
     return null;
   }
-
-  Future<String?> getImageUrl(String? id) async =>
-      await getCatImageUrlByIdUseCase(CatImageUrlParams(id: id));
 }

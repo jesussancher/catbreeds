@@ -17,12 +17,20 @@ class FetchCatImageUrlUseCase
 
   @override
   Future<Response<String>> call(CatImageParams params) async {
+    final bool isInQeue = await localRepository
+        .getCatIsInQeue(CatImageUrlParams(id: params.catId));
+
+    if (isInQeue) {
+      return Response(
+          error: ResponseError(errorMessage: 'Cat is already in qeue'));
+    }
+    await localRepository
+        .setGettingImageQeueList(CatImageUrlParams(id: params.catId));
     final Response<String> resposne =
         await remoteRepository.fetchCatImageUrl(params);
     final String? imageUlr = resposne.success?.data;
     await localRepository
         .setCatImageUrlById(CatImageUrlParams(id: params.catId, url: imageUlr));
-    print('GOTTEN IMAGEID:  ${params.catId}: ${imageUlr}');
 
     return resposne;
   }

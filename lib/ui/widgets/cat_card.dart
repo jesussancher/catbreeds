@@ -7,6 +7,7 @@ import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CatCard extends StatelessWidget {
   final Cat cat;
@@ -30,160 +31,164 @@ class CatCard extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: CustomColor.cardBackgroundColor,
                       borderRadius: BorderRadius.circular(16),
-                      // border: Border.all(
-                      //   color: CustomColor.borderColor,
-                      // ),
                       boxShadow: [
                         BoxShadow(
                           color: CustomColor.shadowColor,
                           blurRadius: 5,
                         )
                       ]),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Stack(
-                          children: [
-                            imageUrl != null
-                                ? SizedBox(
-                                    height: 130,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.35,
-                                    child: Image.network(
-                                      imageUrl,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  )
-                                : Container(
-                                    height: 130,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.35,
-                                    color: Colors.red,
-                                  ),
-                            Positioned(
-                              right: 0,
-                              bottom: 4,
-                              child: ChipWidget(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(6),
-                                  bottomLeft: Radius.circular(6),
-                                ),
-                                children: Row(
-                                  children: [
-                                    CountryFlag.fromCountryCode(
-                                      cat.countryCode ?? '',
-                                      width: 14,
-                                      height: 14,
-                                      shape: Circle(),
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      cat.countryCode ?? '',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                  child: Skeletonizer(
+                    enabled:
+                        snapshot.connectionState == ConnectionState.waiting,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Stack(
                             children: [
-                              Text(
-                                cat.name ?? '',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
+                              imageUrl != null
+                                  ? SizedBox(
+                                      height: 130,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.35,
+                                      child: Image.network(
+                                        imageUrl,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  : Container(
+                                      height: 130,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.35,
+                                      color: CustomColor.transparentColor,
+                                    ),
+                              Positioned(
+                                right: 0,
+                                bottom: 4,
+                                child: ChipWidget(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(6),
+                                    bottomLeft: Radius.circular(6),
+                                  ),
+                                  children: Row(
                                     children: [
-                                      ChipWidget(
-                                        // borderColor: Color(0xFF0F9494),
-                                        children: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.volunteer_activism_rounded,
-                                              size: 12,
-                                              color: Color(0xFF0F9494),
-                                            ),
-                                            const SizedBox(width: 4),
-                                            Text(
-                                              cat.affectionLevel?.toString() ??
-                                                  '',
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                color: Color(0xFF0F9494),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                      CountryFlag.fromCountryCode(
+                                        cat.countryCode ?? '',
+                                        width: 14,
+                                        height: 14,
+                                        shape: Circle(),
                                       ),
                                       const SizedBox(width: 4),
-                                      ChipWidget(
-                                        borderColor:
-                                            Color.fromRGBO(76, 175, 79, 0.322),
-                                        children: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.battery_5_bar_rounded,
-                                              size: 12,
-                                              color: Colors.green,
-                                            ),
-                                            const SizedBox(width: 4),
-                                            Text(
-                                              cat.energyLevel?.toString() ?? '',
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                color: Colors.green,
-                                              ),
-                                            ),
-                                          ],
+                                      Text(
+                                        cat.countryCode ?? '',
+                                        style: TextStyle(
+                                          fontSize: 12,
                                         ),
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(height: 4),
-                                  ChipWidget(
-                                    backgroundColor:
-                                        CustomColor.transparentColor,
-                                    children: Row(
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  cat.name ?? '',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
                                       children: [
-                                        Icon(
-                                          Icons.favorite,
-                                          size: 12,
-                                          color: Colors.red,
+                                        ChipWidget(
+                                          // borderColor: Color(0xFF0F9494),
+                                          children: Row(
+                                            children: [
+                                              Icon(
+                                                Icons
+                                                    .volunteer_activism_rounded,
+                                                size: 12,
+                                                color: Color(0xFF0F9494),
+                                              ),
+                                              const SizedBox(width: 4),
+                                              Text(
+                                                cat.affectionLevel
+                                                        ?.toString() ??
+                                                    '',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Color(0xFF0F9494),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         const SizedBox(width: 4),
-                                        Text(
-                                          '${cat.lifeSpan?.replaceAll(' ', '')} years',
-                                          style: TextStyle(
-                                            fontSize: 12,
+                                        ChipWidget(
+                                          borderColor: Color.fromRGBO(
+                                              76, 175, 79, 0.322),
+                                          children: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.battery_5_bar_rounded,
+                                                size: 12,
+                                                color: Colors.green,
+                                              ),
+                                              const SizedBox(width: 4),
+                                              Text(
+                                                cat.energyLevel?.toString() ??
+                                                    '',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.green,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
-                              )
-                            ],
+                                    const SizedBox(height: 4),
+                                    ChipWidget(
+                                      backgroundColor:
+                                          CustomColor.transparentColor,
+                                      children: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.favorite,
+                                            size: 12,
+                                            color: Colors.red,
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            '${cat.lifeSpan?.replaceAll(' ', '')} years',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

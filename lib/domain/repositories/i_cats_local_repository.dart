@@ -7,6 +7,12 @@ abstract class ICatsLocalRepository {
   /// Set cats lists to stream
   void setCatsList(List<Cat> list);
 
+  /// Set getting image qeue list
+  Future<void> setGettingImageQeueList(CatImageUrlParams params);
+
+  /// Set getting image qeue list
+  Future<bool> getCatIsInQeue(CatImageUrlParams params);
+
   /// Set cat image url by id
   Future<void> setCatImageUrlById(CatImageUrlParams params);
 

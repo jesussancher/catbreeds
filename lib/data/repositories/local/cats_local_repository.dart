@@ -20,4 +20,12 @@ class CatsLocalRepository implements ICatsLocalRepository {
 
   @override
   void setCatsList(List<Cat> list) => catsApi.setCatsList(list);
+
+  @override
+  Future<bool> getCatIsInQeue(CatImageUrlParams params) async =>
+      await catsApi.getCatIsInQeue(params);
+
+  @override
+  Future<void> setGettingImageQeueList(CatImageUrlParams params) async =>
+      await catsApi.setGettingImageQeueList(params);
 }

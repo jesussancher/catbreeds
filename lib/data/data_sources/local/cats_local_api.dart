@@ -9,9 +9,28 @@ class CatsLocalApi implements ICatsLocalApi {
   BehaviorSubject<List<Cat>> _catsListStreamController =
       BehaviorSubject<List<Cat>>.seeded([]);
 
+  BehaviorSubject<List<String>> _qeueImageCatsIdStreamController =
+      BehaviorSubject<List<String>>.seeded([]);
+
   @override
   void setCatsList(List<Cat> list) {
     _catsListStreamController.add(list);
+  }
+
+  @override
+  Future<void> setGettingImageQeueList(CatImageUrlParams params) async {
+    final bool existsInQeue = await getCatIsInQeue(params);
+    if (existsInQeue || params.id == null) return;
+    final List<String> newList = _qeueImageCatsIdStreamController.value;
+
+    newList.add(params.id!);
+    _qeueImageCatsIdStreamController.add(newList);
+  }
+
+  @override
+  Future<bool> getCatIsInQeue(CatImageUrlParams params) async {
+    final List<String> list = _qeueImageCatsIdStreamController.value;
+    return list.contains(params.id);
   }
 
   @override
