@@ -1,0 +1,1 @@
+ /Users/JesusSanchez/Projects/Pragma/CatBreeds/catbreeds/.dart_tool/flutter_build/6cfd27387c69ca9a7072f566e40f6c17/native_assets.yaml: 
