@@ -9,31 +9,28 @@ class BehaviorAndPersonalityTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Table(
-        border: TableBorder.all(
-            color: CustomColor.transparentColor,
-            borderRadius: BorderRadius.circular(16)), // Add border to the table
-        columnWidths: const {
-          0: FlexColumnWidth(), // Width for first column
-          1: FlexColumnWidth(), // Dynamic width for second column
-        },
-        children: [
-          _buildRow('Adaptability', cat.adaptability),
-          _buildRow('Affection Level', cat.affectionLevel),
-          _buildRow('Child Friendly', cat.childFriendly),
-          _buildRow('Dog Friendly', cat.dogFriendly),
-          _buildRow('Energy Level', cat.energyLevel),
-          _buildRow('Grooming', cat.grooming),
-          _buildRow('Health Issues', cat.healthIssues),
-          _buildRow('Intelligence', cat.intelligence),
-          _buildRow('Shedding Level', cat.sheddingLevel),
-          _buildRow('Social Needs', cat.socialNeeds),
-          _buildRow('Stranger Friendly', cat.strangerFriendly),
-          _buildRow('Vocalisation', cat.vocalisation),
-        ],
-      ),
+    return Table(
+      border: TableBorder.all(
+          color: CustomColor.transparentColor,
+          borderRadius: BorderRadius.circular(16)), // Add border to the table
+      columnWidths: const {
+        0: FlexColumnWidth(), // Width for first column
+        1: FlexColumnWidth(), // Dynamic width for second column
+      },
+      children: [
+        _buildRow('Adaptability', cat.adaptability),
+        _buildRow('Affection Level', cat.affectionLevel),
+        _buildRow('Child Friendly', cat.childFriendly),
+        _buildRow('Dog Friendly', cat.dogFriendly),
+        _buildRow('Energy Level', cat.energyLevel),
+        _buildRow('Grooming', cat.grooming),
+        _buildRow('Health Issues', cat.healthIssues),
+        _buildRow('Intelligence', cat.intelligence),
+        _buildRow('Shedding Level', cat.sheddingLevel),
+        _buildRow('Social Needs', cat.socialNeeds),
+        _buildRow('Stranger Friendly', cat.strangerFriendly),
+        _buildRow('Vocalisation', cat.vocalisation),
+      ],
     );
   }
 
@@ -54,6 +51,7 @@ class BehaviorAndPersonalityTable extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: List.generate(5, (index) {
                     return Icon(
                       index < value

@@ -8,4 +8,6 @@ class ImagesManager {
   static String get weightIcon => 'assets/images/weight_icon.svg';
   static String get homeIcon => 'assets/images/home_icon.svg';
   static String get catLapIcon => 'assets/images/cat_lap_icon.svg';
+  static String get filledCatIcon => 'assets/images/filled_cat_icon.svg';
+  static String get outlinedCatIcon => 'assets/images/outlined_cat_icon.svg';
 }

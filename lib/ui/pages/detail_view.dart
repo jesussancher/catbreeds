@@ -1,8 +1,9 @@
 import 'package:catbreeds/core/assets/colors.dart';
 import 'package:catbreeds/core/assets/images_manager.dart';
 import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/ui/widgets/behavior_personality_.dart';
+import 'package:catbreeds/ui/widgets/behavior_personality_table.dart';
 import 'package:catbreeds/ui/widgets/chip_with_icon.dart';
+import 'package:catbreeds/ui/widgets/generic_traits_charts.dart';
 import 'package:catbreeds/ui/widgets/loaders/cat_card_image_loader.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class DetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double toolbarHeight = 70;
-    print('cat.indoor:: ${cat.indoor}');
+    print('cat.indhypoallergenicoor:: ${cat.hypoallergenic}');
     return Scaffold(
         backgroundColor: CustomColor.backgroundColor,
         extendBodyBehindAppBar: true,
@@ -166,7 +167,7 @@ class DetailView extends StatelessWidget {
                                   color: Colors.blue,
                                   padding: EdgeInsets.all(6),
                                 ),
-                                const SizedBox(width: 4),
+                                const SizedBox(width: 8),
                                 ChipWithIcon(
                                   value:
                                       cat.indoor == 0 ? 'Indoor' : 'Not indoor',
@@ -174,7 +175,7 @@ class DetailView extends StatelessWidget {
                                   color: Colors.orange,
                                   padding: EdgeInsets.all(6),
                                 ),
-                                const SizedBox(width: 4),
+                                const SizedBox(width: 8),
                                 ChipWithIcon(
                                   value: cat.suppresedTail == 0
                                       ? 'Has no tail'
@@ -195,7 +196,7 @@ class DetailView extends StatelessWidget {
                                   shrink: true,
                                   padding: EdgeInsets.all(6),
                                 ),
-                                const SizedBox(width: 4),
+                                const SizedBox(width: 8),
                                 ChipWithIcon(
                                   value: cat.shortLegs == 0
                                       ? 'Short legs'
@@ -214,20 +215,8 @@ class DetailView extends StatelessWidget {
                         content: BehaviorAndPersonalityTable(cat),
                       ),
                       _CategoryCard(
-                        title: 'Physics',
-                        content: Row(),
-                      ),
-                      _CategoryCard(
-                        title: 'Physics',
-                        content: Row(),
-                      ),
-                      _CategoryCard(
-                        title: 'Physics',
-                        content: Row(),
-                      ),
-                      _CategoryCard(
-                        title: 'Physics',
-                        content: Row(),
+                        title: 'Genetic Traits',
+                        content: GeneticTraitsCharts(cat),
                       ),
                     ],
                   ),
