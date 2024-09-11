@@ -7,7 +7,6 @@ import 'package:catbreeds/ui/widgets/chip.dart';
 import 'package:catbreeds/ui/widgets/custom_icon.dart';
 import 'package:catbreeds/ui/widgets/loaders/cat_card_image_loader.dart';
 import 'package:country_flags/country_flags.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +29,7 @@ class CatCard extends StatelessWidget {
                   HapticFeedback.selectionClick();
                 },
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                  margin: EdgeInsets.symmetric(vertical: 12, horizontal: 22),
                   decoration: BoxDecoration(
                       color: CustomColor.cardBackgroundColor,
                       borderRadius: BorderRadius.circular(24),
@@ -49,7 +48,7 @@ class CatCard extends StatelessWidget {
                         (imageUrl == null)
                             ? CatCardImageLoader()
                             : SizedBox(
-                                height: 130,
+                                height: 140,
                                 width: MediaQuery.of(context).size.width * 0.33,
                                 child: Image.network(
                                   imageUrl,
@@ -57,8 +56,8 @@ class CatCard extends StatelessWidget {
                                 ),
                               ),
                         Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                          height: 140,
+                          padding: EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,6 +87,13 @@ class CatCard extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 12),
+                              _ChipWithIcon(
+                                value:
+                                    '${cat.lifeSpan?.replaceAll(' ', '')} yrs',
+                                iconName: ImagesManager.lifeIcon,
+                                color: Colors.red,
+                              ),
+                              const SizedBox(height: 4),
                               Row(
                                 children: [
                                   _ChipWithIcon(
@@ -103,10 +109,8 @@ class CatCard extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 4),
                                   _ChipWithIcon(
-                                    value:
-                                        '${cat.lifeSpan?.replaceAll(' ', '')} yrs',
-                                    iconName: ImagesManager.lifeIcon,
-                                    color: Colors.red,
+                                    value: '... more',
+                                    color: Colors.green,
                                   ),
                                 ],
                               ),
@@ -125,12 +129,12 @@ class CatCard extends StatelessWidget {
 }
 
 class _ChipWithIcon extends StatelessWidget {
-  final String iconName;
+  final String? iconName;
   final String value;
   final Color color;
 
   const _ChipWithIcon({
-    required this.iconName,
+    this.iconName,
     required this.value,
     required this.color,
   });
@@ -145,23 +149,25 @@ class _ChipWithIcon extends StatelessWidget {
         )
       ],
       children: Container(
-        padding: EdgeInsets.all(2),
+        padding: EdgeInsets.symmetric(vertical: 2, horizontal: 4),
         child: Row(
           children: [
-            Container(
-              height: 20,
-              width: 20,
-              padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                color: color.withAlpha(30),
-                borderRadius: BorderRadius.circular(20),
+            if (iconName != null) ...[
+              Container(
+                height: 20,
+                width: 20,
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: color.withAlpha(30),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: CustomIcon(
+                  icon: iconName!,
+                  color: color,
+                ),
               ),
-              child: CustomIcon(
-                icon: iconName,
-                color: color,
-              ),
-            ),
-            const SizedBox(width: 6),
+              const SizedBox(width: 6),
+            ],
             Text(
               value,
               style: TextStyle(
@@ -169,7 +175,6 @@ class _ChipWithIcon extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(width: 4),
           ],
         ),
       ),
