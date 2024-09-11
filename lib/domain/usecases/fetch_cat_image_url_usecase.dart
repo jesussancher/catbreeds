@@ -28,9 +28,9 @@ class FetchCatImageUrlUseCase
         .setGettingImageQeueList(CatImageUrlParams(id: params.catId));
     final Response<String> resposne =
         await remoteRepository.fetchCatImageUrl(params);
-    final String? imageUlr = resposne.success?.data;
+    final String? imageUrl = resposne.success?.data;
     await localRepository
-        .setCatImageUrlById(CatImageUrlParams(id: params.catId, url: imageUlr));
+        .setCatImageUrlById(CatImageUrlParams(id: params.catId, url: imageUrl));
 
     return resposne;
   }

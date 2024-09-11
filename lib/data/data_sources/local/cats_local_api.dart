@@ -17,9 +17,6 @@ class CatsLocalApi implements ICatsLocalApi {
   Future<void> setAllCatsList(List<Cat> list) async =>
       _catsListStreamController.add(list);
 
-  Future<void> _addCatsToList(List<Cat> list) async => _catsListStreamController
-      .add(_sortByName(_catsListStreamController.value + list));
-
   @override
   Future<List<Cat>> getAllCatsList() async => _catsListStreamController.value;
 
@@ -42,8 +39,13 @@ class CatsLocalApi implements ICatsLocalApi {
   Future<void> setCatImageUrlById(CatImageUrlParams params) async {
     final List<Cat> list = _catsListStreamController.value;
     final int filteredCatIndex = list.indexWhere((cat) => cat.id == params.id);
-    list.elementAt(filteredCatIndex).setImageUrl(params.url);
+    final Cat filteredCat = list.elementAt(filteredCatIndex);
+    filteredCat.setImageUrl(params.url);
+    list[filteredCatIndex] = filteredCat;
     _catsListStreamController.add(list);
+
+    print(
+        'imageUrl(${filteredCat.name}):: ${filteredCat.referenceImageId} ${params.url} /// ${_qeueImageCatsIdStreamController.value}');
   }
 
   @override
@@ -78,6 +80,5 @@ class CatsLocalApi implements ICatsLocalApi {
         .where((Cat cat) => !currentIdsList.contains(cat.id))
         .toSet()
         .toList();
-    _addCatsToList(catsNotInCurrent);
   }
 }
