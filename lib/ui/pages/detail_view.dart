@@ -1,6 +1,7 @@
 import 'package:catbreeds/core/assets/colors.dart';
 import 'package:catbreeds/core/assets/images_manager.dart';
 import 'package:catbreeds/domain/models/cat.dart';
+import 'package:catbreeds/ui/widgets/behavior_personality_.dart';
 import 'package:catbreeds/ui/widgets/chip_with_icon.dart';
 import 'package:catbreeds/ui/widgets/loaders/cat_card_image_loader.dart';
 import 'package:country_flags/country_flags.dart';
@@ -209,8 +210,8 @@ class DetailView extends StatelessWidget {
                         ),
                       ),
                       _CategoryCard(
-                        title: 'Physics',
-                        content: Row(),
+                        title: 'Behavior and Personality',
+                        content: BehaviorAndPersonalityTable(cat),
                       ),
                       _CategoryCard(
                         title: 'Physics',
