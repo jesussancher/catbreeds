@@ -9,6 +9,7 @@ class ChipWidget extends StatelessWidget {
   final Color? borderColor;
   final BorderRadius? borderRadius;
   final List<BoxShadow>? boxShadow;
+  final EdgeInsets? padding;
 
   const ChipWidget({
     this.text,
@@ -18,11 +19,12 @@ class ChipWidget extends StatelessWidget {
     this.borderColor,
     this.borderRadius,
     this.boxShadow,
+    this.padding,
   });
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 3),
+      padding: padding ?? EdgeInsets.symmetric(vertical: 2, horizontal: 3),
       decoration: BoxDecoration(
         color: backgroundColor ?? CustomColor.backgroundColor,
         borderRadius: borderRadius ?? BorderRadius.circular(4),

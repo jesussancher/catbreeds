@@ -7,6 +7,8 @@ import 'package:catbreeds/domain/models/network/response.dart';
 import 'package:catbreeds/domain/usecases/get_cat_image_url_by_id_usecase.dart';
 import 'package:catbreeds/domain/usecases/fetch_cat_image_url_usecase.dart';
 import 'package:catbreeds/presentation/base_viewmodel.dart';
+import 'package:catbreeds/ui/pages/detail_view.dart';
+import 'package:flutter/material.dart';
 
 class CatCardViewModel extends BaseViewModel {
   final FetchCatImageUrlUseCase _fetchCatImageUrlUseCase;
@@ -34,5 +36,13 @@ class CatCardViewModel extends BaseViewModel {
       return url;
     }
     return null;
+  }
+
+  void goToDetail(BuildContext context, Cat cat) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) => DetailView(cat),
+      ),
+    );
   }
 }

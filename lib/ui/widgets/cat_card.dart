@@ -4,6 +4,7 @@ import 'package:catbreeds/core/di/di.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/presentation/cat_card_viewmodel.dart';
 import 'package:catbreeds/ui/widgets/chip.dart';
+import 'package:catbreeds/ui/widgets/chip_with_icon.dart';
 import 'package:catbreeds/ui/widgets/custom_icon.dart';
 import 'package:catbreeds/ui/widgets/loaders/cat_card_image_loader.dart';
 import 'package:country_flags/country_flags.dart';
@@ -27,6 +28,7 @@ class CatCard extends StatelessWidget {
               final String? imageUrl = snapshot.data;
               return GestureDetector(
                 onTap: () {
+                  model.goToDetail(context, cat);
                   HapticFeedback.heavyImpact();
                 },
                 child: Container(
@@ -104,7 +106,7 @@ class CatCard extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 12),
-                              _ChipWithIcon(
+                              ChipWithIcon(
                                 value:
                                     '${cat.lifeSpan?.replaceAll(' ', '')} years',
                                 iconName: ImagesManager.lifeIcon,
@@ -113,19 +115,19 @@ class CatCard extends StatelessWidget {
                               const SizedBox(height: 4),
                               Row(
                                 children: [
-                                  _ChipWithIcon(
+                                  ChipWithIcon(
                                     value: cat.intelligence?.toString() ?? '',
                                     iconName: ImagesManager.intelligenceIcon,
                                     color: Color(0xFF0F9494),
                                   ),
                                   const SizedBox(width: 4),
-                                  _ChipWithIcon(
+                                  ChipWithIcon(
                                     value: cat.energyLevel?.toString() ?? '',
                                     iconName: ImagesManager.energyIcon,
                                     color: Colors.green,
                                   ),
                                   const SizedBox(width: 4),
-                                  _ChipWithIcon(
+                                  ChipWithIcon(
                                     value: 'About me',
                                   ),
                                 ],
@@ -140,60 +142,6 @@ class CatCard extends StatelessWidget {
               );
             });
       }),
-    );
-  }
-}
-
-class _ChipWithIcon extends StatelessWidget {
-  final String? iconName;
-  final Color? color;
-  final String value;
-
-  const _ChipWithIcon({
-    this.iconName,
-    this.color,
-    required this.value,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return ChipWidget(
-      borderRadius: BorderRadius.circular(14),
-      boxShadow: [
-        BoxShadow(
-          color: CustomColor.shadowColor,
-          blurRadius: 10,
-        )
-      ],
-      children: Container(
-        padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-        child: Row(
-          children: [
-            if (iconName != null) ...[
-              Container(
-                height: 20,
-                width: 20,
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: color?.withAlpha(30),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: CustomIcon(
-                  icon: iconName!,
-                  color: color,
-                ),
-              ),
-              const SizedBox(width: 6),
-            ],
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
