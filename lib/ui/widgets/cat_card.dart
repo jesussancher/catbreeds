@@ -7,6 +7,7 @@ import 'package:catbreeds/ui/widgets/chip.dart';
 import 'package:catbreeds/ui/widgets/custom_icon.dart';
 import 'package:catbreeds/ui/widgets/loaders/cat_card_image_loader.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class CatCard extends StatelessWidget {
                   HapticFeedback.selectionClick();
                 },
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 12, horizontal: 22),
+                  margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                   decoration: BoxDecoration(
                       color: CustomColor.cardBackgroundColor,
                       borderRadius: BorderRadius.circular(24),
@@ -43,12 +44,12 @@ class CatCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         (imageUrl == null)
                             ? CatCardImageLoader()
                             : SizedBox(
-                                height: 140,
+                                height: 130,
                                 width: MediaQuery.of(context).size.width * 0.33,
                                 child: Image.network(
                                   imageUrl,
@@ -56,44 +57,44 @@ class CatCard extends StatelessWidget {
                                 ),
                               ),
                         Container(
-                          height: 140,
+                          height: 130,
                           padding: EdgeInsets.all(12),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                cat.name ?? '',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Row(
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  CountryFlag.fromCountryCode(
-                                    cat.countryCode ?? '',
-                                    width: 12,
-                                    height: 12,
-                                    shape: Circle(),
-                                  ),
-                                  const SizedBox(width: 4),
                                   Text(
-                                    cat.origin ?? '',
+                                    cat.name ?? '',
                                     style: TextStyle(
-                                        fontSize: 12,
-                                        color: CustomColor.foreground500Color),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      CountryFlag.fromCountryCode(
+                                        cat.countryCode ?? '',
+                                        width: 12,
+                                        height: 12,
+                                        shape: Circle(),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        cat.origin ?? '',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color:
+                                                CustomColor.foreground500Color),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
                               const SizedBox(height: 12),
-                              _ChipWithIcon(
-                                value:
-                                    '${cat.lifeSpan?.replaceAll(' ', '')} yrs',
-                                iconName: ImagesManager.lifeIcon,
-                                color: Colors.red,
-                              ),
-                              const SizedBox(height: 4),
                               Row(
                                 children: [
                                   _ChipWithIcon(
@@ -109,8 +110,10 @@ class CatCard extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 4),
                                   _ChipWithIcon(
-                                    value: '... more',
-                                    color: Colors.green,
+                                    value:
+                                        '${cat.lifeSpan?.replaceAll(' ', '')} years',
+                                    iconName: ImagesManager.lifeIcon,
+                                    color: Colors.red,
                                   ),
                                 ],
                               ),
@@ -129,12 +132,12 @@ class CatCard extends StatelessWidget {
 }
 
 class _ChipWithIcon extends StatelessWidget {
-  final String? iconName;
+  final String iconName;
   final String value;
   final Color color;
 
   const _ChipWithIcon({
-    this.iconName,
+    required this.iconName,
     required this.value,
     required this.color,
   });
@@ -149,25 +152,23 @@ class _ChipWithIcon extends StatelessWidget {
         )
       ],
       children: Container(
-        padding: EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+        padding: EdgeInsets.all(2),
         child: Row(
           children: [
-            if (iconName != null) ...[
-              Container(
-                height: 20,
-                width: 20,
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: color.withAlpha(30),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: CustomIcon(
-                  icon: iconName!,
-                  color: color,
-                ),
+            Container(
+              height: 20,
+              width: 20,
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: color.withAlpha(30),
+                borderRadius: BorderRadius.circular(20),
               ),
-              const SizedBox(width: 6),
-            ],
+              child: CustomIcon(
+                icon: iconName,
+                color: color,
+              ),
+            ),
+            const SizedBox(width: 6),
             Text(
               value,
               style: TextStyle(
@@ -175,6 +176,7 @@ class _ChipWithIcon extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
+            const SizedBox(width: 4),
           ],
         ),
       ),

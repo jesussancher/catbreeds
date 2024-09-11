@@ -3,7 +3,9 @@ import 'package:catbreeds/core/assets/images_manager.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/presentation/home_viewmodel.dart';
 import 'package:catbreeds/ui/widgets/cat_card.dart';
+import 'package:catbreeds/ui/widgets/dummy_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -38,25 +40,35 @@ class HomeView extends StatelessWidget {
               )
             ],
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: RawScrollbar(
-              thumbColor: CustomColor.mainColor,
-              radius: const Radius.circular(8),
-              crossAxisMargin: 2,
-              controller: model.scrollController,
-              child: PagedListView<int, Cat>(
-                addRepaintBoundaries: false,
-                scrollController: model.scrollController,
-                pagingController: model.pagingController,
-                builderDelegate: PagedChildBuilderDelegate<Cat>(
-                  itemBuilder: (context, cat, index) => CatCard(cat),
+          body: RawScrollbar(
+            thumbColor: CustomColor.mainColor,
+            radius: const Radius.circular(8),
+            crossAxisMargin: 2,
+            controller: model.scrollController,
+            child: Column(
+              children: [
+                AnimatedContainer(
+                  curve: Curves.decelerate,
+                  height: model.scrolled ? 16 : 0,
+                  duration: Duration(milliseconds: 200),
                 ),
-              ),
+                DummySearchBar(
+                  show: !model.scrolled,
+                  text: model.dummyCatName,
+                ),
+                Expanded(
+                  child: PagedListView<int, Cat>(
+                    addRepaintBoundaries: false,
+                    scrollController: model.scrollController,
+                    pagingController: model.pagingController,
+                    builderDelegate: PagedChildBuilderDelegate<Cat>(
+                      itemBuilder: (context, cat, index) => CatCard(cat),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          )
-          // This trailing comma makes auto-formatting nicer for build methods.
-          );
+          ));
     });
   }
 }

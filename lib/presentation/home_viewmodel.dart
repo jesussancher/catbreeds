@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:catbreeds/domain/models/all_cats_params.dart';
 import 'package:catbreeds/domain/models/cat.dart';
@@ -25,10 +26,12 @@ class HomeViewModel extends BaseViewModel {
   }
 
   String _searchQuery = 'go';
+  String _dummyCatName = 'Search for your prefurrrred cat breeds';
   List<Cat> _catsList = [];
+  bool _scrolled = false;
 
   static const int _pageSize = 10;
-  bool _scrolled = false;
+  Timer? timer;
 
   final PagingController<int, Cat> _pagingController =
       PagingController(firstPageKey: 0);
@@ -71,10 +74,22 @@ class HomeViewModel extends BaseViewModel {
       }
       setAllCatsUseCase(
           SetCatsListParams(list: _pagingController.value.itemList));
+      _initRandomizeDummyCatName(cats);
     }
   }
 
+  void _initRandomizeDummyCatName(List<Cat> list) {
+    timer?.cancel();
+    timer = Timer.periodic(Duration(seconds: 5), (_) {
+      final int random = Random().nextInt(list.length - 1);
+      final Cat randomizedCat = list.elementAt(random);
+      _dummyCatName = randomizedCat.name ?? '';
+      notifyListeners();
+    });
+  }
+
   String get searchQuery => _searchQuery;
+  String get dummyCatName => _dummyCatName;
   List<Cat> get catsList => _catsList;
   bool get scrolled => _scrolled;
   PagingController<int, Cat> get pagingController => _pagingController;

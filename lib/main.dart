@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFC49A6C)),
         useMaterial3: true,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/',
       routes: routes,
     );
   }
