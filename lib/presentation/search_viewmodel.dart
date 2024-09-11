@@ -11,11 +11,11 @@ import 'package:catbreeds/presentation/base_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 class SearchViewModel extends BaseViewModel {
-  final SearchCatsdUseCase searchCatsdUseCase;
-  final GetAllCatsUseCase getAllCatsUseCase;
+  final SearchCatsdUseCase _searchCatsdUseCase;
+  final GetAllCatsUseCase _getAllCatsUseCase;
   SearchViewModel(
-    this.searchCatsdUseCase,
-    this.getAllCatsUseCase,
+    this._searchCatsdUseCase,
+    this._getAllCatsUseCase,
   ) {
     _initRandomizeDummyCatName();
   }
@@ -32,7 +32,7 @@ class SearchViewModel extends BaseViewModel {
 
   void onSearch(String searchText) async {
     final Response<List<Cat>> response =
-        await searchCatsdUseCase(SearchParams(q: searchText));
+        await _searchCatsdUseCase(SearchParams(q: searchText));
     if (response.succeeded) {
       _catsList = response.success?.data ?? [];
       notifyListeners();
@@ -40,7 +40,7 @@ class SearchViewModel extends BaseViewModel {
   }
 
   void _initRandomizeDummyCatName() async {
-    final List<Cat> allCats = await getAllCatsUseCase(NoParam());
+    final List<Cat> allCats = await _getAllCatsUseCase(NoParam());
     if (allCats.isEmpty) return;
     timer?.cancel();
     timer = Timer.periodic(Duration(seconds: 5), (_) {

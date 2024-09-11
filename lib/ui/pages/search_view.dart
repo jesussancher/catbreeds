@@ -2,6 +2,8 @@ import 'package:catbreeds/core/assets/colors.dart';
 import 'package:catbreeds/core/assets/images_manager.dart';
 import 'package:catbreeds/presentation/search_viewmodel.dart';
 import 'package:catbreeds/ui/widgets/cat_card.dart';
+import 'package:catbreeds/ui/widgets/custom_icon.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -13,10 +15,6 @@ class SearchView extends StatelessWidget {
       return Scaffold(
           backgroundColor: CustomColor.backgroundColor,
           appBar: AppBar(
-            // leading: IconButton(
-            //   icon: Icon(Icons.chevron_left_rounded),
-            //   onPressed: () => model.goBack(context),
-            // ),
             backgroundColor: CustomColor.backgroundColor,
             title: SvgPicture.asset(
               ImagesManager.logoSVG,
@@ -58,18 +56,42 @@ class SearchView extends StatelessWidget {
                   ),
                 ),
               ),
-              // DummySearchBar(
-              //   show: !model.scrolled,
-              //   text: model.dummyCatName,
-              // ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: model.catsList.length,
-                  addRepaintBoundaries: false,
-                  itemBuilder: (context, index) =>
-                      CatCard(model.catsList.elementAt(index)),
+              if (model.showFirstSearch)
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomIcon(
+                        icon: ImagesManager.standingCatIcon,
+                        size: 24,
+                      ),
+                      Text("Let's search for ${model.dummyCatName}!"),
+                    ],
+                  ),
+                )
+              else if (model.showNoResults)
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomIcon(
+                        icon: ImagesManager.standingCatIcon,
+                        size: 24,
+                      ),
+                      Text("No cat breeds are called ${model.searchText}!"),
+                      Text("Let's try with ${model.dummyCatName}!"),
+                    ],
+                  ),
+                )
+              else
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: model.catsList.length,
+                    addRepaintBoundaries: false,
+                    itemBuilder: (context, index) =>
+                        CatCard(model.catsList.elementAt(index)),
+                  ),
                 ),
-              ),
             ],
           ));
     });

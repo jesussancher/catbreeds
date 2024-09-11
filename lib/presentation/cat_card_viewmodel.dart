@@ -9,12 +9,12 @@ import 'package:catbreeds/domain/usecases/fetch_cat_image_url_usecase.dart';
 import 'package:catbreeds/presentation/base_viewmodel.dart';
 
 class CatCardViewModel extends BaseViewModel {
-  final FetchCatImageUrlUseCase fetchCatImageUrlUseCase;
-  final GetCatImageUrlByIdUseCase getCatImageUrlByIdUseCase;
+  final FetchCatImageUrlUseCase _fetchCatImageUrlUseCase;
+  final GetCatImageUrlByIdUseCase _getCatImageUrlByIdUseCase;
 
   CatCardViewModel(
-    this.fetchCatImageUrlUseCase,
-    this.getCatImageUrlByIdUseCase,
+    this._fetchCatImageUrlUseCase,
+    this._getCatImageUrlByIdUseCase,
   );
 
   Future<String?> getCatImage(Cat cat) async {
@@ -22,11 +22,11 @@ class CatCardViewModel extends BaseViewModel {
       return cat.imageUrl;
     }
     final String? imageUrl =
-        await getCatImageUrlByIdUseCase(CatImageUrlParams(id: cat.id));
+        await _getCatImageUrlByIdUseCase(CatImageUrlParams(id: cat.id));
 
     if (imageUrl != null) return imageUrl;
     if (cat.referenceImageId == null || cat.id == null) return null;
-    final Response<String> response = await fetchCatImageUrlUseCase(
+    final Response<String> response = await _fetchCatImageUrlUseCase(
         CatImageParams(
             referenceImageId: cat.referenceImageId!, catId: cat.id!));
     if (response.succeeded) {

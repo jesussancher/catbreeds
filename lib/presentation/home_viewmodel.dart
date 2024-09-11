@@ -12,12 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class HomeViewModel extends BaseViewModel {
-  final FetchAllCatsPaginatedUseCase fetchAllCatsPaginatedUseCase;
-  final SetAllCatsUseCase setAllCatsUseCase;
+  final FetchAllCatsPaginatedUseCase _fetchAllCatsPaginatedUseCase;
+  final SetAllCatsUseCase _setAllCatsUseCase;
 
   HomeViewModel(
-    this.fetchAllCatsPaginatedUseCase,
-    this.setAllCatsUseCase,
+    this._fetchAllCatsPaginatedUseCase,
+    this._setAllCatsUseCase,
   ) {
     _initListeners();
   }
@@ -45,7 +45,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future<void> _fetchPage(int pageNumber) async {
-    final Response<List<Cat>> response = await fetchAllCatsPaginatedUseCase(
+    final Response<List<Cat>> response = await _fetchAllCatsPaginatedUseCase(
         AllCatsParams(limit: '10', page: pageNumber.toString()));
     if (response.succeeded) {
       final List<Cat> cats = response.success?.data ?? [];
@@ -58,7 +58,7 @@ class HomeViewModel extends BaseViewModel {
       }
 
       _initRandomizeDummyCatName(cats);
-      await setAllCatsUseCase(SetCatsListParams(list: cats));
+      await _setAllCatsUseCase(SetCatsListParams(list: cats));
     }
   }
 
