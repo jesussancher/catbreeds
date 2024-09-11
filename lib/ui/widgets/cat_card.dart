@@ -22,125 +22,118 @@ class CatCard extends StatelessWidget {
       create: (context) => getIt.get<CatCardViewModel>(),
       lazy: true,
       child: Consumer<CatCardViewModel>(builder: (context, model, child) {
-        return FutureBuilder(
-            future: model.getCatImage(cat),
-            builder: (context, snapshot) {
-              final String? imageUrl = snapshot.data;
-              return GestureDetector(
-                onTap: () {
-                  model.goToDetail(context, cat);
-                  HapticFeedback.heavyImpact();
-                },
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 12, horizontal: 22),
-                  decoration: BoxDecoration(
-                      color: CustomColor.cardBackgroundColor,
-                      borderRadius: BorderRadius.circular(24),
-                      boxShadow: [
-                        BoxShadow(
-                          color: CustomColor.shadowColor,
-                          blurRadius: 10,
-                        )
-                      ]),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Row(
+        return GestureDetector(
+          onTap: () {
+            model.goToDetail(context, cat);
+            HapticFeedback.heavyImpact();
+          },
+          child: Container(
+            margin: EdgeInsets.symmetric(vertical: 12, horizontal: 22),
+            decoration: BoxDecoration(
+                color: CustomColor.cardBackgroundColor,
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: [
+                  BoxShadow(
+                    color: CustomColor.shadowColor,
+                    blurRadius: 10,
+                  )
+                ]),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  (!cat.hasImage)
+                      ? CatCardImageLoader()
+                      : SizedBox(
+                          height: cardHeight,
+                          width: MediaQuery.of(context).size.width * 0.33,
+                          child: Image.network(
+                            cat.imageUrlJPG!,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, _, __) {
+                              return Image.network(
+                                cat.imageUrlPNG ?? '',
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, _, __) {
+                                  return CatCardImageLoader();
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                  Container(
+                    height: cardHeight,
+                    padding: EdgeInsets.all(12),
+                    child: Column(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        (imageUrl == null)
-                            ? CatCardImageLoader()
-                            : SizedBox(
-                                height: cardHeight,
-                                width: MediaQuery.of(context).size.width * 0.33,
-                                child: Image.network(
-                                  imageUrl,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, _, __) {
-                                    return Image.network(
-                                      cat.imageUrlPNG ?? '',
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, _, __) {
-                                        return CatCardImageLoader();
-                                      },
-                                    );
-                                  },
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              cat.name ?? '',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                CountryFlag.fromCountryCode(
+                                  cat.countryCode ?? '',
+                                  width: 12,
+                                  height: 12,
+                                  shape: Circle(),
                                 ),
-                              ),
-                        Container(
-                          height: cardHeight,
-                          padding: EdgeInsets.all(12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    cat.name ?? '',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      CountryFlag.fromCountryCode(
-                                        cat.countryCode ?? '',
-                                        width: 12,
-                                        height: 12,
-                                        shape: Circle(),
-                                      ),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        cat.origin ?? '',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                CustomColor.foreground500Color),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 12),
-                              ChipWithIcon(
-                                value:
-                                    '${cat.lifeSpan?.replaceAll(' ', '')} years',
-                                iconName: ImagesManager.lifeIcon,
-                                color: Colors.red,
-                              ),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  ChipWithIcon(
-                                    value: cat.intelligence?.toString() ?? '',
-                                    iconName: ImagesManager.intelligenceIcon,
-                                    color: Color(0xFF0F9494),
-                                  ),
-                                  const SizedBox(width: 4),
-                                  ChipWithIcon(
-                                    value: cat.energyLevel?.toString() ?? '',
-                                    iconName: ImagesManager.energyIcon,
-                                    color: Colors.green,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  ChipWithIcon(
-                                    value: 'About me',
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  cat.origin ?? '',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: CustomColor.foreground500Color),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        ChipWithIcon(
+                          value: '${cat.lifeSpan?.replaceAll(' ', '')} years',
+                          iconName: ImagesManager.lifeIcon,
+                          color: Colors.red,
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            ChipWithIcon(
+                              value: cat.intelligence?.toString() ?? '',
+                              iconName: ImagesManager.intelligenceIcon,
+                              color: Color(0xFF0F9494),
+                            ),
+                            const SizedBox(width: 4),
+                            ChipWithIcon(
+                              value: cat.energyLevel?.toString() ?? '',
+                              iconName: ImagesManager.energyIcon,
+                              color: Colors.green,
+                            ),
+                            const SizedBox(width: 4),
+                            ChipWithIcon(
+                              value: 'About me',
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                ),
-              );
-            });
+                ],
+              ),
+            ),
+          ),
+        );
       }),
     );
   }

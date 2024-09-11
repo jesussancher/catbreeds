@@ -1,4 +1,5 @@
 import 'package:catbreeds/core/assets/colors.dart';
+import 'package:catbreeds/core/extension/int_extension.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,7 @@ class GeneticTraitsCharts extends StatelessWidget {
           child: FittedBox(
             fit: BoxFit.fill,
             child: Switch.adaptive(
-              value: value == 0,
+              value: value.toBoolean,
               onChanged: (bool newValue) {},
               activeColor: CustomColor.mainColor,
             ),

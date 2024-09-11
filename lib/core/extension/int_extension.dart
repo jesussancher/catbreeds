@@ -1,3 +1,3 @@
-extension IntExtension on int {
-  bool get toBoolean => this != 0;
+extension IntExtension on int? {
+  bool get toBoolean => this == 1;
 }

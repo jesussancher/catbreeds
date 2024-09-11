@@ -11,6 +11,7 @@ class Cat {
   final String? name;
   final String? origin;
   final String? description;
+  final String? temperament;
   @JsonKey(name: 'reference_image_id')
   final String? referenceImageId;
   @JsonKey(name: 'country_code')
@@ -38,7 +39,7 @@ class Cat {
   final int? sheddingLevel;
   @JsonKey(name: 'social_needs')
   final int? socialNeeds;
-  @JsonKey(name: 'strager_friendly')
+  @JsonKey(name: 'stranger_friendly')
   final int? strangerFriendly;
   final int? vocalisation;
   final int? experimental;
@@ -60,6 +61,7 @@ class Cat {
     this.name,
     this.origin,
     this.description,
+    this.temperament,
     this.referenceImageId,
     this.countryCode,
     this.lifeSpan,
@@ -108,4 +110,6 @@ class Cat {
       (referenceImageId != null
           ? 'https://cdn2.thecatapi.com/images/$referenceImageId.png'
           : null);
+
+  bool get hasImage => imageUrlJPG != null || imageUrlPNG != null;
 }

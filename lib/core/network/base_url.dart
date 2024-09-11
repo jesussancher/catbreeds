@@ -1,6 +1,7 @@
+const String _baseUrl = 'https://api.thecatapi.com/v1';
+
 class BaseUrl {
-  static String getAllCats = 'https://api.thecatapi.com/v1/breeds';
-  static String searchCats = 'https://api.thecatapi.com/v1/breeds/search/';
-  static String getCatImage =
-      'https://api.thecatapi.com/v1/images/{referenceImageId}';
+  static String getAllCats = '$_baseUrl/breeds';
+  static String searchCats = '$_baseUrl/breeds/search/';
+  static String getCatImage = '$_baseUrl/images/{referenceImageId}';
 }
