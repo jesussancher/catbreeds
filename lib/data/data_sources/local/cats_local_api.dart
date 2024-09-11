@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:catbreeds/data/data_sources/local/i_cats_local_api.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/domain/models/cat_image_url_params.dart';
+import 'package:catbreeds/domain/models/search_params.dart';
 import 'package:rxdart/subjects.dart';
 
 class CatsLocalApi implements ICatsLocalApi {
@@ -13,9 +14,14 @@ class CatsLocalApi implements ICatsLocalApi {
       BehaviorSubject<List<String>>.seeded([]);
 
   @override
-  void setCatsList(List<Cat> list) {
-    _catsListStreamController.add(list);
-  }
+  Future<void> setAllCatsList(List<Cat> list) async =>
+      _catsListStreamController.add(list);
+
+  Future<void> _addCatsToList(List<Cat> list) async => _catsListStreamController
+      .add(_sortByName(_catsListStreamController.value + list));
+
+  @override
+  Future<List<Cat>> getAllCatsList() async => _catsListStreamController.value;
 
   @override
   Future<void> setGettingImageQeueList(CatImageUrlParams params) async {
@@ -36,9 +42,7 @@ class CatsLocalApi implements ICatsLocalApi {
   Future<void> setCatImageUrlById(CatImageUrlParams params) async {
     final List<Cat> list = _catsListStreamController.value;
     final int filteredCatIndex = list.indexWhere((cat) => cat.id == params.id);
-    final Cat filteredCat = list.elementAt(filteredCatIndex);
-    filteredCat.setImageUrl(params.url);
-    list[filteredCatIndex] = filteredCat;
+    list.elementAt(filteredCatIndex).setImageUrl(params.url);
     _catsListStreamController.add(list);
   }
 
@@ -47,5 +51,33 @@ class CatsLocalApi implements ICatsLocalApi {
     final List<Cat> list = _catsListStreamController.value;
     final Cat filteredCat = list.firstWhere((cat) => cat.id == params.id);
     return filteredCat.imageUrl;
+  }
+
+  @override
+  Future<List<Cat>> searchCatsByName(SearchParams params) async {
+    final List<Cat> list = _catsListStreamController.value;
+    return list
+        .where((Cat cat) =>
+            cat.name!.toLowerCase().contains(params.q!.toLowerCase()))
+        .toList();
+  }
+
+  List<Cat> _sortByName(List<Cat> list) {
+    list.sort((Cat a, Cat b) => a.name?.compareTo(b.name ?? '') ?? -1);
+    return list;
+  }
+
+  @override
+  Future<void> addCatsToListFromSearch(List<Cat>? list) async {
+    if (list == null) return;
+    final List<String?> currentIdsList = _catsListStreamController.value
+        .map((Cat cat) => cat.id)
+        .toSet()
+        .toList();
+    final List<Cat> catsNotInCurrent = list
+        .where((Cat cat) => !currentIdsList.contains(cat.id))
+        .toSet()
+        .toList();
+    _addCatsToList(catsNotInCurrent);
   }
 }

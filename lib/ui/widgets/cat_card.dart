@@ -7,7 +7,6 @@ import 'package:catbreeds/ui/widgets/chip.dart';
 import 'package:catbreeds/ui/widgets/custom_icon.dart';
 import 'package:catbreeds/ui/widgets/loaders/cat_card_image_loader.dart';
 import 'package:country_flags/country_flags.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +27,7 @@ class CatCard extends StatelessWidget {
               final String? imageUrl = snapshot.data;
               return GestureDetector(
                 onTap: () {
-                  HapticFeedback.selectionClick();
+                  HapticFeedback.heavyImpact();
                 },
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 12, horizontal: 22),

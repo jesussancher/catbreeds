@@ -12,6 +12,7 @@
 Icon?
 **/Pods/
 **/.symlinks/
+*.dart.transitive_digest
 profile
 xcuserdata
 **/.generated/

@@ -1,14 +1,19 @@
 import 'package:catbreeds/core/di/di.dart';
 import 'package:catbreeds/core/router/routes.dart';
 import 'package:catbreeds/presentation/home_viewmodel.dart';
+import 'package:catbreeds/presentation/search_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   configureDependencies();
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => getIt.get<HomeViewModel>()),
-  ], child: const MyApp()));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => getIt.get<HomeViewModel>()),
+      ChangeNotifierProvider(create: (context) => getIt.get<SearchViewModel>()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {

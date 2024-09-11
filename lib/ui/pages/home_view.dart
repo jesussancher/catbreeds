@@ -5,7 +5,7 @@ import 'package:catbreeds/presentation/home_viewmodel.dart';
 import 'package:catbreeds/ui/widgets/cat_card.dart';
 import 'package:catbreeds/ui/widgets/dummy_search_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +34,10 @@ class HomeView extends StatelessWidget {
                       Icons.search,
                       color: CustomColor.foregroundColor,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      HapticFeedback.heavyImpact();
+                      model.goToSearchView(context);
+                    },
                   ),
                 ),
               )
@@ -55,6 +58,7 @@ class HomeView extends StatelessWidget {
                 DummySearchBar(
                   show: !model.scrolled,
                   text: model.dummyCatName,
+                  onTap: model.goToSearchView,
                 ),
                 Expanded(
                   child: PagedListView<int, Cat>(

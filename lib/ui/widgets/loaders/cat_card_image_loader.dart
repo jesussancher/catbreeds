@@ -8,7 +8,7 @@ class CatCardImageLoader extends StatelessWidget {
         shimmerColor: Colors.grey[350]!,
         shimmerDuration: 3000,
         child: Container(
-          height: 130,
+          height: 140,
           color: Colors.grey[300],
           width: MediaQuery.of(context).size.width * 0.33,
         ));

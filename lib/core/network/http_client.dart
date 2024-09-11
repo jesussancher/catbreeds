@@ -26,6 +26,7 @@ class HttpClient implements IHttpClient {
       {required String url, Params? params}) async {
     final Uri uri = Uri.parse(_addDynamicAddressParams(url, params));
     final Uri uriWithQuery = uri.replace(queryParameters: params?.toJson());
+    print('uriWithQuery:: ${uriWithQuery.toString()} / ${params?.toJson()}');
     try {
       final http.Response response = await http.get(
         uriWithQuery,
