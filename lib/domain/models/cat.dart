@@ -53,7 +53,7 @@ class Cat {
   @JsonKey(name: 'wikipedia_url')
   final String? wikipediaUrl;
   final int? hypoallergenic;
-  String? imageUrl;
+  String? _imageUrl;
 
   Cat({
     this.id,
@@ -91,10 +91,13 @@ class Cat {
   });
 
   void setImageUrl(String? url) {
-    imageUrl = url;
+    _imageUrl = url;
   }
 
   factory Cat.fromJson(Map<String, dynamic> json) => _$CatFromJson(json);
 
   Map<String, dynamic> toJson() => _$CatToJson(this);
+
+  String? get imageUrl =>
+      _imageUrl ?? 'https://cdn2.thecatapi.com/images/${referenceImageId}.jpg';
 }

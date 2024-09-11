@@ -41,7 +41,7 @@ Cat _$CatFromJson(Map<String, dynamic> json) => Cat(
       weight: json['weight'] == null
           ? null
           : Weight.fromJson(json['weight'] as Map<String, dynamic>),
-    )..imageUrl = json['imageUrl'] as String?;
+    );
 
 Map<String, dynamic> _$CatToJson(Cat instance) => <String, dynamic>{
       'weight': instance.weight,
@@ -76,5 +76,4 @@ Map<String, dynamic> _$CatToJson(Cat instance) => <String, dynamic>{
       'short_legs': instance.shortLegs,
       'wikipedia_url': instance.wikipediaUrl,
       'hypoallergenic': instance.hypoallergenic,
-      'imageUrl': instance.imageUrl,
     };

@@ -18,6 +18,9 @@ class CatCardViewModel extends BaseViewModel {
   );
 
   Future<String?> getCatImage(Cat cat) async {
+    if (cat.imageUrl != null) {
+      return cat.imageUrl;
+    }
     final String? imageUrl =
         await getCatImageUrlByIdUseCase(CatImageUrlParams(id: cat.id));
 

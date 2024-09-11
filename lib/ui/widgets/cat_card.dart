@@ -54,6 +54,11 @@ class CatCard extends StatelessWidget {
                                 child: Image.network(
                                   imageUrl,
                                   fit: BoxFit.cover,
+                                  errorBuilder: (context, _, __) {
+                                    print('failed ${cat.name}');
+
+                                    return CatCardImageLoader();
+                                  },
                                 ),
                               ),
                         Container(
