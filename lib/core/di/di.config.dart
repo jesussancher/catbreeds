@@ -27,8 +27,8 @@ import '../../domain/usecases/search_cats_usecase.dart' as _i13;
 import '../../domain/usecases/set_all_cats_usecase.dart' as _i15;
 import '../../domain/usecases/set_cat_image_url_by_id_usecase.dart' as _i17;
 import '../../presentation/cat_card_viewmodel.dart' as _i18;
-import '../../presentation/home_viewmodel.dart' as _i20;
-import '../../presentation/search_viewmodel.dart' as _i19;
+import '../../presentation/home_viewmodel.dart' as _i19;
+import '../../presentation/search_viewmodel.dart' as _i20;
 import '../../ui/pages/home_view.dart' as _i4;
 import '../../ui/pages/search_view.dart' as _i5;
 import '../../ui/pages/splash_view.dart' as _i3;
@@ -79,8 +79,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i17.SetCatImageUrlByIdUseCase>(
         () => useCaseModule.setCatImageUrlByIdUseCase);
     gh.factory<_i18.CatCardViewModel>(() => viewModelModule.catCardViewmodel);
-    gh.factory<_i19.SearchViewModel>(() => viewModelModule.searchViewModel);
-    gh.factory<_i20.HomeViewModel>(() => viewModelModule.homeViewmodel);
+    gh.factory<_i19.HomeViewModel>(() => viewModelModule.homeViewmodel);
+    gh.factory<_i20.SearchViewModel>(() => viewModelModule.searchViewModel);
     return this;
   }
 }
@@ -176,14 +176,14 @@ class _$ViewModelModule extends _i30.ViewModelModule {
       );
 
   @override
-  _i19.SearchViewModel get searchViewModel => _i19.SearchViewModel(
-        _getIt<_i13.SearchCatsdUseCase>(),
-        _getIt<_i14.GetAllCatsUseCase>(),
+  _i19.HomeViewModel get homeViewmodel => _i19.HomeViewModel(
+        _getIt<_i10.FetchAllCatsPaginatedUseCase>(),
+        _getIt<_i15.SetAllCatsUseCase>(),
       );
 
   @override
-  _i20.HomeViewModel get homeViewmodel => _i20.HomeViewModel(
-        _getIt<_i10.FetchAllCatsPaginatedUseCase>(),
-        _getIt<_i15.SetAllCatsUseCase>(),
+  _i20.SearchViewModel get searchViewModel => _i20.SearchViewModel(
+        _getIt<_i13.SearchCatsdUseCase>(),
+        _getIt<_i14.GetAllCatsUseCase>(),
       );
 }

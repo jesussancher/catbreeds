@@ -98,6 +98,14 @@ class Cat {
 
   Map<String, dynamic> toJson() => _$CatToJson(this);
 
-  String? get imageUrl =>
-      _imageUrl ?? 'https://cdn2.thecatapi.com/images/${referenceImageId}.jpg';
+  String? get imageUrlJPG =>
+      _imageUrl ??
+      (referenceImageId != null
+          ? 'https://cdn2.thecatapi.com/images/$referenceImageId.jpg'
+          : null);
+  String? get imageUrlPNG =>
+      _imageUrl ??
+      (referenceImageId != null
+          ? 'https://cdn2.thecatapi.com/images/$referenceImageId.png'
+          : null);
 }

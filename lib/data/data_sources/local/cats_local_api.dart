@@ -49,7 +49,7 @@ class CatsLocalApi implements ICatsLocalApi {
   Future<String?> getCatImageUrlById(CatImageUrlParams params) async {
     final List<Cat> list = _catsListStreamController.value;
     final Cat filteredCat = list.firstWhere((cat) => cat.id == params.id);
-    return filteredCat.imageUrl;
+    return filteredCat.imageUrlJPG;
   }
 
   @override
