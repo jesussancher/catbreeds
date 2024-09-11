@@ -176,8 +176,10 @@ class _$ViewModelModule extends _i30.ViewModelModule {
       );
 
   @override
-  _i19.SearchViewModel get searchViewModel =>
-      _i19.SearchViewModel(_getIt<_i13.SearchCatsdUseCase>());
+  _i19.SearchViewModel get searchViewModel => _i19.SearchViewModel(
+        _getIt<_i13.SearchCatsdUseCase>(),
+        _getIt<_i14.GetAllCatsUseCase>(),
+      );
 
   @override
   _i20.HomeViewModel get homeViewmodel => _i20.HomeViewModel(

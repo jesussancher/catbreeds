@@ -43,9 +43,6 @@ class CatsLocalApi implements ICatsLocalApi {
     filteredCat.setImageUrl(params.url);
     list[filteredCatIndex] = filteredCat;
     _catsListStreamController.add(list);
-
-    print(
-        'imageUrl(${filteredCat.name}):: ${filteredCat.referenceImageId} ${params.url} /// ${_qeueImageCatsIdStreamController.value}');
   }
 
   @override
@@ -60,7 +57,7 @@ class CatsLocalApi implements ICatsLocalApi {
     final List<Cat> list = _catsListStreamController.value;
     return list
         .where((Cat cat) =>
-            cat.name!.toLowerCase().contains(params.q!.toLowerCase()))
+            cat.name!.toLowerCase().startsWith(params.q!.toLowerCase()))
         .toList();
   }
 
@@ -72,13 +69,15 @@ class CatsLocalApi implements ICatsLocalApi {
   @override
   Future<void> addCatsToListFromSearch(List<Cat>? list) async {
     if (list == null) return;
-    final List<String?> currentIdsList = _catsListStreamController.value
-        .map((Cat cat) => cat.id)
-        .toSet()
-        .toList();
+    final List<Cat> currentIdsList =
+        _catsListStreamController.value.toSet().toList();
     final List<Cat> catsNotInCurrent = list
-        .where((Cat cat) => !currentIdsList.contains(cat.id))
+        .where(
+            (Cat cat) => !currentIdsList.map((Cat e) => e.id).contains(cat.id))
         .toSet()
         .toList();
+
+    _catsListStreamController
+        .add(_sortByName(currentIdsList + catsNotInCurrent));
   }
 }

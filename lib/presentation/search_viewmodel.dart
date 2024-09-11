@@ -1,19 +1,30 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
+import 'package:catbreeds/domain/models/no_param.dart';
 import 'package:catbreeds/domain/models/search_params.dart';
+import 'package:catbreeds/domain/usecases/get_all_cats_usecase.dart';
 import 'package:catbreeds/domain/usecases/search_cats_usecase.dart';
 import 'package:catbreeds/presentation/base_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 class SearchViewModel extends BaseViewModel {
   final SearchCatsdUseCase searchCatsdUseCase;
+  final GetAllCatsUseCase getAllCatsUseCase;
   SearchViewModel(
     this.searchCatsdUseCase,
-  );
+    this.getAllCatsUseCase,
+  ) {
+    _initRandomizeDummyCatName();
+  }
 
   TextEditingController _inputController = TextEditingController();
+  Timer? timer;
 
   List<Cat> _catsList = [];
+  String _dummyCatName = 'Aagean';
 
   void focusInput(BuildContext context, FocusNode focuseNode) {
     FocusScope.of(context).requestFocus(focuseNode);
@@ -28,6 +39,23 @@ class SearchViewModel extends BaseViewModel {
     }
   }
 
+  void _initRandomizeDummyCatName() async {
+    final List<Cat> allCats = await getAllCatsUseCase(NoParam());
+    if (allCats.isEmpty) return;
+    timer?.cancel();
+    timer = Timer.periodic(Duration(seconds: 5), (_) {
+      final int randomIndex = Random().nextInt(allCats.length - 1);
+      final Cat randomizedCat = allCats.elementAt(randomIndex);
+      _dummyCatName = randomizedCat.name ?? '';
+      notifyListeners();
+    });
+  }
+
   TextEditingController get inputController => _inputController;
   List<Cat> get catsList => _catsList;
+  bool get showNoResults =>
+      _catsList.isEmpty && _inputController.text.isNotEmpty;
+  bool get showFirstSearch => _inputController.text.isEmpty;
+  String get dummyCatName => _dummyCatName;
+  String get searchText => _inputController.text;
 }

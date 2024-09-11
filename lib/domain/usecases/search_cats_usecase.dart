@@ -18,23 +18,27 @@ class SearchCatsdUseCase
 
   @override
   Future<Response<List<Cat>>> call(SearchParams params) async {
+    if (params.q?.isEmpty == true) {
+      return Response(success: ResponseSuccess(data: []));
+    }
     final List<Cat> localResult =
         await localRepository.searchCatsByName(params);
-
     if (localResult.isNotEmpty) {
       final Response<List<Cat>> response = Response(
-          success: ResponseSuccess<List<Cat>>.fromResponse(data: localResult));
-      response.success?.data?.forEach((Cat cat) {
-        if (cat.id == null || cat.referenceImageId == null) return;
-        remoteRepository.fetchCatImageUrl(CatImageParams(
-            catId: cat.id!, referenceImageId: cat.referenceImageId!));
-      });
-      if (response.succeeded) {
-        localRepository.addCatsToListFromSearch(response.success?.data);
-      }
+        success: ResponseSuccess<List<Cat>>.fromResponse(
+          data: localResult,
+        ),
+      );
+
       return response;
     }
 
-    return await remoteRepository.searchCatsById(params);
+    final Response<List<Cat>> response =
+        await remoteRepository.searchCatsById(params);
+    if (response.succeeded) {
+      localRepository.addCatsToListFromSearch(response.success?.data);
+    }
+
+    return response;
   }
 }
