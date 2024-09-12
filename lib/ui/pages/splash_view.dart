@@ -57,26 +57,24 @@ class _SplashViewState extends State<SplashView> {
     const int seconds = 2;
     const Curve curve = Curves.slowMiddle;
 
-    return MaterialApp(
-      home: Scaffold(
-        body: AnimatedContainer(
-          duration: const Duration(seconds: seconds),
-          color: backgroundColor,
-          padding: EdgeInsets.all(36),
-          child: Center(
-            child: AnimatedOpacity(
-              opacity: opacityLevel,
+    return Scaffold(
+      body: AnimatedContainer(
+        duration: const Duration(seconds: seconds),
+        color: backgroundColor,
+        padding: EdgeInsets.all(36),
+        child: Center(
+          child: AnimatedOpacity(
+            opacity: opacityLevel,
+            curve: curve,
+            duration: const Duration(seconds: 1),
+            child: AnimatedScale(
               curve: curve,
-              duration: const Duration(seconds: 1),
-              child: AnimatedScale(
-                curve: curve,
-                scale: scaleFactor,
-                duration: const Duration(seconds: seconds),
-                child: SvgPicture.asset(
-                  ImagesManager.logoSVG,
-                  colorFilter:
-                      ColorFilter.mode(CustomColor.mainColor, BlendMode.srcIn),
-                ),
+              scale: scaleFactor,
+              duration: const Duration(seconds: seconds),
+              child: SvgPicture.asset(
+                ImagesManager.logoSVG,
+                colorFilter:
+                    ColorFilter.mode(CustomColor.mainColor, BlendMode.srcIn),
               ),
             ),
           ),
