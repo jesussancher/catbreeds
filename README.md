@@ -1,8 +1,16 @@
 # CatBreeds Application
 
+
+![CatBreeds Logo](https://i.ibb.co/98pYD3h/icon-01.png)
+
+
 ## Overview
 
 CatBreeds is a Flutter application designed as a requirement for the Mobile Developer position at Pragma. It's aim is to provide detailed information about various cat breeds. The app features browsing, searching, and viewing details of cats, all while utilizing modern Flutter architecture patterns to ensure a clean and maintainable codebase.
+
+## Brand
+
+CatBreeds its now a brand that can be used all around for the cat lovers.
 
 ## Architecture
 
@@ -96,6 +104,9 @@ The application uses the `cached_network_image` package to efficiently manage an
 - **Views**: Utilize ViewModels to display data and handle user interactions. For example:
   - `HomeView` displays a list of cat breeds and supports infinite scrolling.
   - `SearchView` allows users to search for cat breeds and displays search results.
+  - `DetailView` showcase the cat breed image and its details.
+
+![CatBreeds Logo](https://i.ibb.co/2KCQypb/IMG-4785.jpg) ![CatBreeds Logo](https://i.ibb.co/8P51Jp3/IMG-4786.jpg)
 
 ## Conclusion
 
