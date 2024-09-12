@@ -6,7 +6,7 @@
 
 ## Overview
 
-CatBreeds is a Flutter application designed as a requirement for the Mobile Developer position at Pragma. It's aim is to provide detailed information about various cat breeds. The app features browsing, searching, and viewing details of cats, all while utilizing modern Flutter architecture patterns to ensure a clean and maintainable codebase.
+CatBreeds is a Flutter application designed as a requirement for the Mobile Developer position at Pragma. It's aim is to provide detailed information about various cat breeds. The app uses https://api.thecatapi.com/ and features browsing, searching, and viewing details of cats, all while utilizing modern Flutter architecture patterns to ensure a clean and maintainable codebase.
 
 ## Flutter and Dart Versions
 
