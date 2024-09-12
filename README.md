@@ -8,6 +8,11 @@
 
 CatBreeds is a Flutter application designed as a requirement for the Mobile Developer position at Pragma. It's aim is to provide detailed information about various cat breeds. The app features browsing, searching, and viewing details of cats, all while utilizing modern Flutter architecture patterns to ensure a clean and maintainable codebase.
 
+## Flutter and Dart Versions
+
+- Flutter 3.19.6
+- Dart 3.3.4
+
 ## Brand
 
 CatBreeds its now a brand that can be used all around for the cat lovers. The brand uses Poppins as base font as well as the application texts.
