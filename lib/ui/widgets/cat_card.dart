@@ -50,19 +50,6 @@ class CatCard extends StatelessWidget {
                             altUrl: cat.imageUrlPNG!,
                             placeholder: CatCardImageLoader(),
                           ),
-                          //  Image.network(
-                          //   cat.imageUrlJPG!,
-                          //   fit: BoxFit.cover,
-                          //   errorBuilder: (context, _, __) {
-                          //     return Image.network(
-                          //       cat.imageUrlPNG ?? '',
-                          //       fit: BoxFit.cover,
-                          //       errorBuilder: (context, _, __) {
-                          //         return CatCardImageLoader();
-                          //       },
-                          //     );
-                          //   },
-                          // ),
                         ),
                   Container(
                     height: cardHeight,
@@ -75,12 +62,8 @@ class CatCard extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            CustomText.subtitle(
                               cat.name ?? '',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              ),
                             ),
                             Row(
                               children: [
@@ -91,11 +74,10 @@ class CatCard extends StatelessWidget {
                                   shape: Circle(),
                                 ),
                                 const SizedBox(width: 4),
-                                Text(
+                                CustomText.chip(
                                   cat.origin ?? '',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: CustomColor.foreground500Color),
+                                  color: CustomColor.foreground500Color,
+                                  fontWeight: FontWeight.normal,
                                 ),
                               ],
                             ),

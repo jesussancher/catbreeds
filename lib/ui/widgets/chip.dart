@@ -32,11 +32,9 @@ class ChipWidget extends StatelessWidget {
         boxShadow: boxShadow,
       ),
       child: children ??
-          Text(
+          CustomText.chip(
             text ?? '',
-            style: TextStyle(
-              color: foregroundColor,
-            ),
+            color: foregroundColor,
           ),
     );
   }

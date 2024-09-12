@@ -3,6 +3,7 @@ import 'package:catbreeds/presentation/presentation.dart';
 import 'package:catbreeds/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class SearchView extends StatelessWidget {
@@ -28,8 +29,7 @@ class SearchView extends StatelessWidget {
                   child: TextField(
                     controller: model.inputController,
                     onChanged: model.onSearch,
-                    // focusNode: focusNode,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       color: CustomColor.foreground500Color,
                       fontSize: 14,
                     ),
@@ -44,7 +44,7 @@ class SearchView extends StatelessWidget {
                       filled: true,
                       fillColor: CustomColor.backgroundEmphasisColor,
                       hintText: 'Search for your prefurrrred cat breeds',
-                      hintStyle: TextStyle(
+                      hintStyle: GoogleFonts.poppins(
                         color: CustomColor.foreground500Color,
                         fontSize: 14,
                       ),
@@ -62,7 +62,9 @@ class SearchView extends StatelessWidget {
                         icon: ImagesManager.standingCatIcon,
                         size: 24,
                       ),
-                      Text("Let's search for ${model.dummyCatName}!"),
+                      CustomText.paragraph(
+                        "Let's search for ${model.dummyCatName}!",
+                      ),
                     ],
                   ),
                 )
@@ -75,8 +77,10 @@ class SearchView extends StatelessWidget {
                         icon: ImagesManager.standingCatIcon,
                         size: 24,
                       ),
-                      Text("No cat breeds are called ${model.searchText}!"),
-                      Text("Let's try with ${model.dummyCatName}!"),
+                      CustomText.paragraph(
+                          "No cat breeds are called ${model.searchText}!"),
+                      CustomText.paragraph(
+                          "Let's try with ${model.dummyCatName}!"),
                     ],
                   ),
                 )

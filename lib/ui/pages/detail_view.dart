@@ -106,12 +106,8 @@ class DetailView extends StatelessWidget {
                                 shape: Circle(),
                               ),
                               const SizedBox(width: 4),
-                              Text(
+                              CustomText.chip(
                                 cat.origin ?? '',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                ),
                               ),
                               const SizedBox(width: 8),
                               ChipWithIcon(
@@ -128,22 +124,15 @@ class DetailView extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 16),
-                      Text(
+                      CustomText.paragraph(
                         cat.description ?? '',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          color: CustomColor.foreground500Color,
-                        ),
+                        color: CustomColor.foreground500Color,
                       ),
                       const SizedBox(height: 16),
-                      Text(
+                      CustomText.paragraph(
                         cat.temperament ?? '',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          color: CustomColor.foreground500Color,
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        color: CustomColor.foreground500Color,
+                        fontWeight: FontWeight.bold,
                       ),
                       const SizedBox(height: 16),
                       _CategoryCard(
@@ -243,13 +232,9 @@ class _CategoryCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          CustomText.subtitle(
             title,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: CustomColor.foregroundColor,
-            ),
+            color: CustomColor.foregroundColor,
           ),
           const SizedBox(height: 12),
           content,

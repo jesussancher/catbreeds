@@ -41,11 +41,9 @@ class BehaviorAndPersonalityTable extends StatelessWidget {
           : [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
+                child: CustomText.paragraph(
                   attribute,
-                  style: TextStyle(
-                    color: CustomColor.foreground500Color,
-                  ),
+                  color: CustomColor.foreground500Color,
                 ),
               ),
               Padding(

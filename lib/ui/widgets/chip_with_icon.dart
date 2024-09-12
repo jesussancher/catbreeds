@@ -58,13 +58,7 @@ class ChipWithIcon extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
                   ],
-                  Text(
-                    value,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  CustomText.chip(value),
                 ],
               )
             : Row(
@@ -86,13 +80,7 @@ class ChipWithIcon extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                   ],
-                  Text(
-                    value,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  CustomText.chip(value),
                 ],
               ),
       ),

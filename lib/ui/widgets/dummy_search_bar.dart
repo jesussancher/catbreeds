@@ -34,12 +34,9 @@ class DummySearchBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            CustomText.paragraph(
               text,
-              key: ValueKey<String>(text),
-              style: TextStyle(
-                color: CustomColor.foreground500Color,
-              ),
+              color: CustomColor.foreground500Color,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16.0),

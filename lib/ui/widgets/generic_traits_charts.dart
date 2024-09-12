@@ -25,11 +25,9 @@ class GeneticTraitsCharts extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        CustomText.paragraph(
           traitName,
-          style: TextStyle(
-            color: CustomColor.foreground500Color,
-          ),
+          color: CustomColor.foreground500Color,
         ),
         SizedBox(
           height: 32,
