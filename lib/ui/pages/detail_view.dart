@@ -11,6 +11,7 @@ class DetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('cat.indoor:: ${cat.indoor}');
     const double toolbarHeight = 70;
     return Scaffold(
         backgroundColor: CustomColor.backgroundColor,
@@ -151,18 +152,9 @@ class DetailView extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 ChipWithIcon(
-                                  value: cat.indoor.toBoolean
-                                      ? 'Indoor'
-                                      : 'Not indoor',
-                                  iconName: ImagesManager.homeIcon,
-                                  color: Colors.orange,
-                                  padding: EdgeInsets.all(6),
-                                ),
-                                const SizedBox(width: 8),
-                                ChipWithIcon(
                                   value: cat.suppresedTail.toBoolean
-                                      ? 'Has no tail'
-                                      : 'Has tail',
+                                      ? 'Suppressed Tail'
+                                      : 'Not Suppressed Tail',
                                   iconName: ImagesManager.standingCatIcon,
                                   color: Colors.green,
                                   padding: EdgeInsets.all(6),
@@ -172,6 +164,15 @@ class DetailView extends StatelessWidget {
                             const SizedBox(height: 8),
                             Row(
                               children: [
+                                ChipWithIcon(
+                                  value: cat.indoor.toBoolean
+                                      ? 'Indoor'
+                                      : 'Not Indoor',
+                                  iconName: ImagesManager.homeIcon,
+                                  color: Colors.orange,
+                                  padding: EdgeInsets.all(6),
+                                ),
+                                const SizedBox(width: 8),
                                 ChipWithIcon(
                                   value:
                                       cat.indoor.toBoolean ? 'Laps' : 'No laps',
@@ -183,8 +184,8 @@ class DetailView extends StatelessWidget {
                                 const SizedBox(width: 8),
                                 ChipWithIcon(
                                   value: cat.shortLegs.toBoolean
-                                      ? 'Short legs'
-                                      : 'Long legs',
+                                      ? 'Short Legs'
+                                      : 'Long Legs',
                                   iconName: ImagesManager.standingCatIcon,
                                   color: Colors.pink,
                                   padding: EdgeInsets.all(6),
