@@ -10,7 +10,7 @@ CatBreeds is a Flutter application designed as a requirement for the Mobile Deve
 
 ## Brand
 
-CatBreeds its now a brand that can be used all around for the cat lovers.
+CatBreeds its now a brand that can be used all around for the cat lovers. The brand uses Poppins as base font as well as the application texts.
 
 ## Architecture
 
