@@ -3,10 +3,15 @@ import 'package:catbreeds/core/router/routes.dart';
 import 'package:catbreeds/presentation/home_viewmodel.dart';
 import 'package:catbreeds/presentation/search_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   configureDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => getIt.get<HomeViewModel>()),
@@ -29,7 +34,6 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,7 +43,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFC49A6C)),
         useMaterial3: true,
       ),
-      initialRoute: '/',
+      initialRoute: '/splash',
       routes: routes,
     );
   }
