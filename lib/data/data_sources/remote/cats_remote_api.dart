@@ -1,10 +1,10 @@
 import 'package:catbreeds/core/network/base_url.dart';
 import 'package:catbreeds/core/network/i_http_client.dart';
 import 'package:catbreeds/data/data_sources/remote/i_cats_remote_api.dart';
-import 'package:catbreeds/domain/models/all_cats_params.dart';
+import 'package:catbreeds/domain/models/params/all_cats_params.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
-import 'package:catbreeds/domain/models/search_params.dart';
+import 'package:catbreeds/domain/models/params/search_params.dart';
 
 class CatsRemoteApi implements ICatsRemoteApi {
   final IHttpClient httpClient;

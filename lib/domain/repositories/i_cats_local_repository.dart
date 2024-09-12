@@ -1,11 +1,12 @@
 import 'dart:async';
 
 import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/domain/models/search_params.dart';
+import 'package:catbreeds/domain/models/params/search_params.dart';
+import 'package:catbreeds/domain/models/params/set_cats_list_params.dart';
 
 abstract class ICatsLocalRepository {
   /// Set cats lists to stream
-  Future<void> setAllCatsList(List<Cat> list);
+  Future<void> setAllCatsList(SetCatsListParams params);
 
   /// Set cats lists to stream
   Future<List<Cat>> getAllCatsList();
@@ -14,5 +15,5 @@ abstract class ICatsLocalRepository {
   Future<List<Cat>> searchCatsByName(SearchParams params);
 
   /// Add cats to list from search
-  Future<void> addCatsToListFromSearch(List<Cat>? list);
+  Future<void> addCatsToListFromSearch(SetCatsListParams params);
 }

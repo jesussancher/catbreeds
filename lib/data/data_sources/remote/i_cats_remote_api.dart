@@ -1,7 +1,7 @@
-import 'package:catbreeds/domain/models/all_cats_params.dart';
+import 'package:catbreeds/domain/models/params/all_cats_params.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
-import 'package:catbreeds/domain/models/search_params.dart';
+import 'package:catbreeds/domain/models/params/search_params.dart';
 
 abstract class ICatsRemoteApi {
   /// Fetch cats paginated

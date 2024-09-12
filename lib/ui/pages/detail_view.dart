@@ -48,19 +48,6 @@ class DetailView extends StatelessWidget {
                           altUrl: cat.imageUrlPNG ?? '',
                           placeholder: CatCardImageLoader(),
                         ),
-                        // child: Image.network(
-                        //   cat.imageUrlJPG ?? '',
-                        //   fit: BoxFit.cover,
-                        //   errorBuilder: (context, _, __) {
-                        //     return Cached(
-                        //       cat.imageUrlPNG ?? '',
-                        //       fit: BoxFit.cover,
-                        //       errorBuilder: (context, _, __) {
-                        //         return CatCardImageLoader();
-                        //       },
-                        //     );
-                        //   },
-                        // ),
                       ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.5,

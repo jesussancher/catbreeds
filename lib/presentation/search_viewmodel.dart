@@ -3,8 +3,8 @@ import 'dart:math';
 
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
-import 'package:catbreeds/domain/models/no_param.dart';
-import 'package:catbreeds/domain/models/search_params.dart';
+import 'package:catbreeds/domain/models/params/no_param.dart';
+import 'package:catbreeds/domain/models/params/search_params.dart';
 import 'package:catbreeds/domain/usecases/get_all_cats_usecase.dart';
 import 'package:catbreeds/domain/usecases/search_cats_usecase.dart';
 import 'package:catbreeds/presentation/base_viewmodel.dart';

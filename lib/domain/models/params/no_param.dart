@@ -1,4 +1,4 @@
-import 'package:catbreeds/domain/models/network/params.dart';
+import 'package:catbreeds/domain/models/params/params.dart';
 
 class NoParam extends Params {
   NoParam();

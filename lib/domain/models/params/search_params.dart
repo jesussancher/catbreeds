@@ -1,4 +1,4 @@
-import 'package:catbreeds/domain/models/network/params.dart';
+import 'package:catbreeds/domain/models/params/params.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'search_params.g.dart';

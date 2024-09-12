@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:catbreeds/domain/models/all_cats_params.dart';
+import 'package:catbreeds/domain/models/params/all_cats_params.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
-import 'package:catbreeds/domain/models/set_cats_list_params.dart';
+import 'package:catbreeds/domain/models/params/set_cats_list_params.dart';
 import 'package:catbreeds/domain/usecases/fetch_all_cats_paginated_usecase.dart';
 import 'package:catbreeds/domain/usecases/set_all_cats_usecase.dart';
 import 'package:catbreeds/presentation/base_viewmodel.dart';

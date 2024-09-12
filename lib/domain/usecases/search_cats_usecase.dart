@@ -1,7 +1,7 @@
 import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/domain/models/cat_image_params.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
-import 'package:catbreeds/domain/models/search_params.dart';
+import 'package:catbreeds/domain/models/params/search_params.dart';
+import 'package:catbreeds/domain/models/params/set_cats_list_params.dart';
 import 'package:catbreeds/domain/repositories/i_cats_local_repository.dart';
 import 'package:catbreeds/domain/repositories/i_cats_remote_repository.dart';
 import 'package:catbreeds/domain/usecases/core/future_query_usecase.dart';
@@ -36,7 +36,8 @@ class SearchCatsdUseCase
     final Response<List<Cat>> response =
         await remoteRepository.searchCatsById(params);
     if (response.succeeded) {
-      localRepository.addCatsToListFromSearch(response.success?.data);
+      localRepository.addCatsToListFromSearch(
+          SetCatsListParams(list: response.success?.data));
     }
 
     return response;

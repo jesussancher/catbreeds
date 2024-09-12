@@ -1,5 +1,5 @@
 import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/domain/models/no_param.dart';
+import 'package:catbreeds/domain/models/params/no_param.dart';
 import 'package:catbreeds/domain/repositories/i_cats_local_repository.dart';
 import 'package:catbreeds/domain/usecases/core/future_query_usecase.dart';
 

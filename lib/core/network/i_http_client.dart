@@ -1,4 +1,4 @@
-import 'package:catbreeds/domain/models/network/params.dart';
+import 'package:catbreeds/domain/models/params/params.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
 import 'package:dartz/dartz.dart';
 

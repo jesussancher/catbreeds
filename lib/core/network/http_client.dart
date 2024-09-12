@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:catbreeds/core/network/i_http_client.dart';
-import 'package:catbreeds/domain/models/network/params.dart';
+import 'package:catbreeds/domain/models/params/params.dart';
 import 'package:catbreeds/domain/models/network/response.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
