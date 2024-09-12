@@ -240,7 +240,7 @@ class _CategoryCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        color: CustomColor.backgroundEnphasisColor,
+        color: CustomColor.backgroundEmphasisColor,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [],
       ),

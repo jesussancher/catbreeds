@@ -6,6 +6,7 @@ import 'package:catbreeds/presentation/presentation.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter/material.dart';
 
+/// ViewModel for managing home screen state including paginated fetching of cats and UI interactions.
 class HomeViewModel extends BaseViewModel {
   final FetchAllCatsPaginatedUseCase _fetchAllCatsPaginatedUseCase;
   final SetAllCatsUseCase _setAllCatsUseCase;
@@ -28,6 +29,7 @@ class HomeViewModel extends BaseViewModel {
       PagingController(firstPageKey: 0);
   final ScrollController _scrollController = ScrollController();
 
+  /// Initializes listeners for paging and scroll controller.
   void _initListeners() {
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
@@ -39,6 +41,7 @@ class HomeViewModel extends BaseViewModel {
     });
   }
 
+  /// Fetches a page of cats from the remote repository and updates the paging controller.
   Future<void> _fetchPage(int pageNumber) async {
     final Response<List<Cat>> response = await _fetchAllCatsPaginatedUseCase(
         AllCatsParams(limit: '10', page: pageNumber.toString()));
@@ -57,17 +60,19 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
+  /// Randomly updates the dummy cat name every 5 seconds.
   void _initRandomizeDummyCatName(List<Cat> list) {
     if (list.isEmpty) return;
     timer?.cancel();
     timer = Timer.periodic(Duration(seconds: 5), (_) {
-      final int randomIndex = Random().nextInt(list.length - 1);
-      final Cat randomizedCat = list.elementAt(randomIndex);
+      final int randomIndex = Random().nextInt(list.length);
+      final Cat randomizedCat = list[randomIndex];
       _dummyCatName = randomizedCat.name ?? '';
       notifyListeners();
     });
   }
 
+  /// Navigates to the search view.
   void goToSearchView(BuildContext context) {
     Navigator.of(context).pushNamed('/search');
   }

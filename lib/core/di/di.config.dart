@@ -70,7 +70,7 @@ extension GetItInjectableX on _i1.GetIt {
         () => useCaseModule.fetchAllCatsPaginatedUseCase);
     gh.singleton<_i13.ICatsLocalRepository>(
         () => repositoryModule.catsLocalRepository);
-    gh.factory<_i14.SearchCatsdUseCase>(() => useCaseModule.searchCatsdUseCase);
+    gh.factory<_i14.SearchCatsUseCase>(() => useCaseModule.searchCatsUseCase);
     gh.factory<_i15.GetAllCatsUseCase>(() => useCaseModule.getAllCatsUseCase);
     gh.factory<_i16.SetAllCatsUseCase>(() => useCaseModule.setAllCatsUseCase);
     gh.factory<_i17.HomeViewModel>(() => viewModelModule.homeViewmodel);
@@ -115,7 +115,7 @@ class _$ViewModelModule extends _i22.ViewModelModule {
 
   @override
   _i18.SearchViewModel get searchViewModel => _i18.SearchViewModel(
-        _getIt<_i14.SearchCatsdUseCase>(),
+        _getIt<_i14.SearchCatsUseCase>(),
         _getIt<_i15.GetAllCatsUseCase>(),
       );
 }
@@ -157,7 +157,7 @@ class _$UseCaseModule extends _i29.UseCaseModule {
       _i12.FetchAllCatsPaginatedUseCase(_getIt<_i9.ICatsRemoteRepository>());
 
   @override
-  _i14.SearchCatsdUseCase get searchCatsdUseCase => _i14.SearchCatsdUseCase(
+  _i14.SearchCatsUseCase get searchCatsUseCase => _i14.SearchCatsUseCase(
         _getIt<_i9.ICatsRemoteRepository>(),
         _getIt<_i13.ICatsLocalRepository>(),
       );

@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:catbreeds/domain/models/weight.dart';
 
 part 'cat.g.dart';
 
+/// Represents a cat with various attributes and image URLs.
 @JsonSerializable()
 class Cat {
   final Weight? weight;
@@ -56,6 +56,7 @@ class Cat {
   final int? hypoallergenic;
   String? _imageUrl;
 
+  /// Creates a [Cat] instance.
   Cat({
     this.id,
     this.name,
@@ -92,24 +93,31 @@ class Cat {
     this.weight,
   });
 
+  /// Sets the image URL for the cat.
   void setImageUrl(String? url) {
     _imageUrl = url;
   }
 
+  /// Creates a [Cat] from JSON.
   factory Cat.fromJson(Map<String, dynamic> json) => _$CatFromJson(json);
 
+  /// Converts the [Cat] to JSON.
   Map<String, dynamic> toJson() => _$CatToJson(this);
 
+  /// Gets the image URL for JPG format, or null if not available.
   String? get imageUrlJPG =>
       _imageUrl ??
       (referenceImageId != null
           ? 'https://cdn2.thecatapi.com/images/$referenceImageId.jpg'
           : null);
+
+  /// Gets the image URL for PNG format, or null if not available.
   String? get imageUrlPNG =>
       _imageUrl ??
       (referenceImageId != null
           ? 'https://cdn2.thecatapi.com/images/$referenceImageId.png'
           : null);
 
+  /// Checks if the cat has an image URL.
   bool get hasImage => imageUrlJPG != null || imageUrlPNG != null;
 }

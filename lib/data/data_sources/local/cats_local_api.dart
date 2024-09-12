@@ -1,19 +1,23 @@
 import 'dart:async';
-
 import 'package:catbreeds/data/data_sources/data_sources.dart';
 import 'package:catbreeds/domain/domain.dart';
 import 'package:rxdart/subjects.dart';
 
+/// Implements [ICatsLocalApi] for managing local cat data.
 class CatsLocalApi implements ICatsLocalApi {
-  BehaviorSubject<List<Cat>> _catsListStreamController =
+  /// Stream controller for maintaining the list of cats.
+  final BehaviorSubject<List<Cat>> _catsListStreamController =
       BehaviorSubject<List<Cat>>.seeded([]);
 
   @override
-  Future<void> setAllCatsList(SetCatsListParams params) async =>
-      _catsListStreamController.add(params.list ?? []);
+  Future<void> setAllCatsList(SetCatsListParams params) async {
+    _catsListStreamController.add(params.list ?? []);
+  }
 
   @override
-  Future<List<Cat>> getAllCatsList() async => _catsListStreamController.value;
+  Future<List<Cat>> getAllCatsList() async {
+    return _catsListStreamController.value;
+  }
 
   @override
   Future<List<Cat>> searchCatsByName(SearchParams params) async {
@@ -24,6 +28,7 @@ class CatsLocalApi implements ICatsLocalApi {
         .toList();
   }
 
+  /// Sorts a list of cats by their names.
   List<Cat> _sortByName(List<Cat> list) {
     list.sort((Cat a, Cat b) => a.name?.compareTo(b.name ?? '') ?? -1);
     return list;

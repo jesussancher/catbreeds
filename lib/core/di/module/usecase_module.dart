@@ -9,5 +9,5 @@ abstract class UseCaseModule {
   FetchAllCatsPaginatedUseCase get fetchAllCatsPaginatedUseCase;
   GetAllCatsUseCase get getAllCatsUseCase;
   SetAllCatsUseCase get setAllCatsUseCase;
-  SearchCatsdUseCase get searchCatsdUseCase;
+  SearchCatsUseCase get searchCatsUseCase;
 }

@@ -42,7 +42,7 @@ class SearchView extends StatelessWidget {
                         borderSide: BorderSide.none,
                       ),
                       filled: true,
-                      fillColor: CustomColor.backgroundEnphasisColor,
+                      fillColor: CustomColor.backgroundEmphasisColor,
                       hintText: 'Search for your prefurrrred cat breeds',
                       hintStyle: TextStyle(
                         color: CustomColor.foreground500Color,

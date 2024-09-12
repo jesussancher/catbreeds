@@ -5,42 +5,46 @@ import 'package:catbreeds/domain/domain.dart';
 import 'package:catbreeds/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 
+/// ViewModel for managing search functionality and displaying a list of cats.
 class SearchViewModel extends BaseViewModel {
-  final SearchCatsdUseCase _searchCatsdUseCase;
+  final SearchCatsUseCase _searchCatsUseCase;
   final GetAllCatsUseCase _getAllCatsUseCase;
+  late Timer timer;
+
+  List<Cat> _catsList = [];
+  String _dummyCatName = 'Aagean';
+  final TextEditingController _inputController = TextEditingController();
+
+  /// Creates an instance of [SearchViewModel] with use cases for searching and retrieving cats.
   SearchViewModel(
-    this._searchCatsdUseCase,
+    this._searchCatsUseCase,
     this._getAllCatsUseCase,
   ) {
     _initRandomizeDummyCatName();
   }
 
-  TextEditingController _inputController = TextEditingController();
-  Timer? timer;
-
-  List<Cat> _catsList = [];
-  String _dummyCatName = 'Aagean';
-
-  void focusInput(BuildContext context, FocusNode focuseNode) {
-    FocusScope.of(context).requestFocus(focuseNode);
+  /// Focuses the input field using the provided [FocusNode].
+  void focusInput(BuildContext context, FocusNode focusNode) {
+    FocusScope.of(context).requestFocus(focusNode);
   }
 
+  /// Initiates a search with the given [searchText].
   void onSearch(String searchText) async {
     final Response<List<Cat>> response =
-        await _searchCatsdUseCase(SearchParams(q: searchText));
+        await _searchCatsUseCase(SearchParams(q: searchText));
     if (response.succeeded) {
       _catsList = response.success?.data ?? [];
       notifyListeners();
     }
   }
 
+  /// Initializes and periodically updates the dummy cat name.
   void _initRandomizeDummyCatName() async {
     final List<Cat> allCats = await _getAllCatsUseCase(NoParam());
     if (allCats.isEmpty) return;
-    timer?.cancel();
     timer = Timer.periodic(Duration(seconds: 5), (_) {
-      final int randomIndex = Random().nextInt(allCats.length - 1);
-      final Cat randomizedCat = allCats.elementAt(randomIndex);
+      final int randomIndex = Random().nextInt(allCats.length);
+      final Cat randomizedCat = allCats[randomIndex];
       _dummyCatName = randomizedCat.name ?? '';
       notifyListeners();
     });

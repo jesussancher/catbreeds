@@ -28,7 +28,7 @@ class DummySearchBar extends StatelessWidget {
         padding: EdgeInsets.all(show ? 12 : 0),
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: CustomColor.backgroundEnphasisColor,
+          color: CustomColor.backgroundEmphasisColor,
           borderRadius: BorderRadius.circular(24),
         ),
         child: Row(

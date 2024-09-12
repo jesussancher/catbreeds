@@ -2,16 +2,19 @@ import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/domain/models/params/search_params.dart';
 import 'package:catbreeds/domain/models/params/set_cats_list_params.dart';
 
+/// Interface for local cat data operations.
 abstract class ICatsLocalApi {
-  /// Set cats lists to stream
+  /// Saves a list of cats to the local stream.
   Future<void> setAllCatsList(SetCatsListParams params);
 
-  /// Set cats lists to stream
+  /// Retrieves the list of all cats from the local stream.
   Future<List<Cat>> getAllCatsList();
 
-  /// Search cats by name
+  /// Searches for cats by name.
+  ///
+  /// Returns a list of cats matching the search criteria.
   Future<List<Cat>> searchCatsByName(SearchParams params);
 
-  /// Add cats to list from search
+  /// Adds cats to the list based on search results.
   Future<void> addCatsToListFromSearch(SetCatsListParams params);
 }
