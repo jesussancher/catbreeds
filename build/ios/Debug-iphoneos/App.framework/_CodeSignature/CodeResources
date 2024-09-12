@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		0rWR0sLAzG5qI3tX8kyYmjNFhMs=
+		h2XGFBm7rgyR6niYbqbhVJyqv1k=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		r1WRLD2pEMfpCSY7xX8IDL3nfIY=
+		8u9yGhfCXuzm61Cyp4WVg37/s2U=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,11 +22,23 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		iD/kzwreOcdbB6FXWssB2yjeVDY=
+		PRfn95iYiI2UljsAe3g48iR4rUA=
+		</data>
+		<key>flutter_assets/assets/images/cat_lap_icon.svg</key>
+		<data>
+		x64HWbBssbfmPxYUR0iD7AiM1Yo=
 		</data>
 		<key>flutter_assets/assets/images/energy_icon.svg</key>
 		<data>
 		I1FwdK3+3ASlcK4QfitZ6AqeYLg=
+		</data>
+		<key>flutter_assets/assets/images/filled_cat_icon.svg</key>
+		<data>
+		FoByHtq6T4/Orw/Zm6Bs0l67M1c=
+		</data>
+		<key>flutter_assets/assets/images/home_icon.svg</key>
+		<data>
+		eIyPW3mhshkWnEhzyQsbRWVVqVg=
 		</data>
 		<key>flutter_assets/assets/images/intelligence_icon.svg</key>
 		<data>
@@ -40,6 +52,18 @@
 		<data>
 		R07z7cUH8AYuA/va7Ki9bD4mOEQ=
 		</data>
+		<key>flutter_assets/assets/images/outlined_cat_icon.svg</key>
+		<data>
+		X5XM/dzVoiejsrDbxwcVQJYiVwY=
+		</data>
+		<key>flutter_assets/assets/images/standing_cat_icon.svg</key>
+		<data>
+		WsMQL8Ml3kj3UbHSHDTPyVMSxNE=
+		</data>
+		<key>flutter_assets/assets/images/weight_icon.svg</key>
+		<data>
+		kNCt533jShQ1SZ5oN7rA2Pbirm4=
+		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
 		/CUoTuPQqqdexfyOT9lpJhV+2MQ=
@@ -50,7 +74,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		woNncNfpaxJcM9ZT62QEQ9Mpv2Y=
+		XPjX0wNqm+7sBCVmrGmc7FhfGRg=
 		</data>
 		<key>flutter_assets/packages/country_flags/res/si/ac.si</key>
 		<data>
@@ -1131,14 +1155,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GYpepgEkWRZCIFKBbi5cuQeOid52mFOFg9jL/u7V3Fw=
+			TlroIpk4RHFdGoJyflGJcTsO6uS/806DHF8vXqRaxS0=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bMDDpRd6f4viO9jNb4F6IxO8WOYINAnsbKPjFwW5IzA=
+			U0ag0lDTgSGRHQr30+iNEiP8ca5RJslProTg3NsRW7Y=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -1152,7 +1176,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uHBdP4fY+i7y16ZqDgqcHc7Q6hxhSzmxpXFzfAy1w/c=
+			+U1QQNcdV2bYv0NgrANY9pc9UuHHI1HXC7AoCnhWbs4=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/cat_lap_icon.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			5TZ+xZySdQj3SQnWtbn70plEBlH7+RhjLRQ6CVuR2C4=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/images/energy_icon.svg</key>
@@ -1160,6 +1191,20 @@
 			<key>hash2</key>
 			<data>
 			QBzQOhRCtBgScuU3kSDPxzlZmSFoYkwDuQPF3f5BuGI=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/filled_cat_icon.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			SIc5GzXYP+yYsha6A0DoUrin+yxa8wNIHvYKKyX2f+E=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/home_icon.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			jhNv9mp/nIr6RghreF0CxTxt1CPkxTjvpW1Og3SwD1Y=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/images/intelligence_icon.svg</key>
@@ -1183,6 +1228,27 @@
 			LJSOeUJ3df0gAfhs2+DaA+YO3yeJjMsNowrGW+YzSCU=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/images/outlined_cat_icon.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MlicDdB3IZbde+rL+BRpUValmSgBcruW5gRzhixHWtk=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/standing_cat_icon.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			/RG5vEVh4JQiGwATs3Mvxs5afio+/mp6RGcTb6781xE=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/weight_icon.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			EPtSjAjqB5D0pGW0hXbmoKMR0i0LW1IMMhJ89LtNIcE=
+			</data>
+		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<dict>
 			<key>hash2</key>
@@ -1201,7 +1267,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			B6qOmF+T1PrAJ1bbPsUIOiXEykW+HbfjHn6Bei5u8/s=
+			yyZeR3kSIfbh++xGVQ5lLjp3c+wpg2Fjmnjwndpxa0s=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/country_flags/res/si/ac.si</key>

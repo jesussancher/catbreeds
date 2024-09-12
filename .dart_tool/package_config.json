@@ -254,6 +254,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "google_fonts",
+      "rootUri": "file:///Users/JesusSanchez/.pub-cache/hosted/pub.dev/google_fonts-6.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "graphs",
       "rootUri": "file:///Users/JesusSanchez/.pub-cache/hosted/pub.dev/graphs-2.3.1",
       "packageUri": "lib/",
@@ -716,7 +722,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-09-12T01:25:51.415250Z",
+  "generated": "2024-09-12T03:15:39.485001Z",
   "generator": "pub",
   "generatorVersion": "3.3.4"
 }

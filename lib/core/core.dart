@@ -4,3 +4,4 @@ export 'router/router.dart';
 export 'extension/int_extension.dart';
 export 'di/di.dart';
 export 'di/di.config.dart';
+export 'typography.dart';

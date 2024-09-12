@@ -1,4 +1,5 @@
 import 'package:catbreeds/core/core.dart';
+import 'package:catbreeds/core/typography.dart';
 import 'package:catbreeds/domain/domain.dart';
 import 'package:catbreeds/ui/ui.dart';
 import 'package:country_flags/country_flags.dart';
@@ -40,7 +41,7 @@ class DetailView extends StatelessWidget {
                         child: CachedImage(
                           url: cat.imageUrlJPG ?? '',
                           altUrl: cat.imageUrlPNG ?? '',
-                          placeholder: CatCardImageLoader(),
+                          placeholder: SizedBox(),
                         ),
                       ),
                 Container(
@@ -92,14 +93,9 @@ class DetailView extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          CustomText.title(
                             cat.name ?? '',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 28,
-                              color: CustomColor.mainColor,
-                            ),
+                            color: CustomColor.mainColor,
                           ),
                           Row(
                             children: [
