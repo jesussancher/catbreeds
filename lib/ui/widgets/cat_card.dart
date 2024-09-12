@@ -3,9 +3,8 @@ import 'package:catbreeds/core/assets/images_manager.dart';
 import 'package:catbreeds/core/di/di.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/presentation/cat_card_viewmodel.dart';
-import 'package:catbreeds/ui/widgets/chip.dart';
+import 'package:catbreeds/ui/widgets/cached_image.dart';
 import 'package:catbreeds/ui/widgets/chip_with_icon.dart';
-import 'package:catbreeds/ui/widgets/custom_icon.dart';
 import 'package:catbreeds/ui/widgets/loaders/cat_card_image_loader.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +17,7 @@ class CatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double cardHeight = 140;
+
     return ChangeNotifierProvider<CatCardViewModel>(
       create: (context) => getIt.get<CatCardViewModel>(),
       lazy: true,
@@ -49,19 +49,24 @@ class CatCard extends StatelessWidget {
                       : SizedBox(
                           height: cardHeight,
                           width: MediaQuery.of(context).size.width * 0.33,
-                          child: Image.network(
-                            cat.imageUrlJPG!,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, _, __) {
-                              return Image.network(
-                                cat.imageUrlPNG ?? '',
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, _, __) {
-                                  return CatCardImageLoader();
-                                },
-                              );
-                            },
+                          child: CachedImage(
+                            url: cat.imageUrlJPG!,
+                            altUrl: cat.imageUrlPNG!,
+                            placeholder: CatCardImageLoader(),
                           ),
+                          //  Image.network(
+                          //   cat.imageUrlJPG!,
+                          //   fit: BoxFit.cover,
+                          //   errorBuilder: (context, _, __) {
+                          //     return Image.network(
+                          //       cat.imageUrlPNG ?? '',
+                          //       fit: BoxFit.cover,
+                          //       errorBuilder: (context, _, __) {
+                          //         return CatCardImageLoader();
+                          //       },
+                          //     );
+                          //   },
+                          // ),
                         ),
                   Container(
                     height: cardHeight,

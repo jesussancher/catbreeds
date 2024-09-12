@@ -3,6 +3,7 @@ import 'package:catbreeds/core/assets/images_manager.dart';
 import 'package:catbreeds/core/extension/int_extension.dart';
 import 'package:catbreeds/domain/models/cat.dart';
 import 'package:catbreeds/ui/widgets/behavior_personality_table.dart';
+import 'package:catbreeds/ui/widgets/cached_image.dart';
 import 'package:catbreeds/ui/widgets/chip_with_icon.dart';
 import 'package:catbreeds/ui/widgets/generic_traits_charts.dart';
 import 'package:catbreeds/ui/widgets/loaders/cat_card_image_loader.dart';
@@ -42,19 +43,24 @@ class DetailView extends StatelessWidget {
                     : SizedBox(
                         height: MediaQuery.of(context).size.height * 0.5,
                         width: MediaQuery.of(context).size.width,
-                        child: Image.network(
-                          cat.imageUrlJPG ?? '',
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, _, __) {
-                            return Image.network(
-                              cat.imageUrlPNG ?? '',
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, _, __) {
-                                return CatCardImageLoader();
-                              },
-                            );
-                          },
+                        child: CachedImage(
+                          url: cat.imageUrlJPG ?? '',
+                          altUrl: cat.imageUrlPNG ?? '',
+                          placeholder: CatCardImageLoader(),
                         ),
+                        // child: Image.network(
+                        //   cat.imageUrlJPG ?? '',
+                        //   fit: BoxFit.cover,
+                        //   errorBuilder: (context, _, __) {
+                        //     return Cached(
+                        //       cat.imageUrlPNG ?? '',
+                        //       fit: BoxFit.cover,
+                        //       errorBuilder: (context, _, __) {
+                        //         return CatCardImageLoader();
+                        //       },
+                        //     );
+                        //   },
+                        // ),
                       ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.5,
