@@ -175,8 +175,7 @@ class DetailView extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 4),
                                 ChipWithIcon(
-                                  value:
-                                      cat.indoor.toBoolean ? 'Laps' : 'No laps',
+                                  value: cat.lap.toBoolean ? 'Laps' : 'No Laps',
                                   iconName: ImagesManager.catLapIcon,
                                   color: Colors.purple,
                                   shrink: true,
