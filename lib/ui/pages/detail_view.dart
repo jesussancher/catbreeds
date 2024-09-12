@@ -1,5 +1,4 @@
 import 'package:catbreeds/core/core.dart';
-import 'package:catbreeds/core/typography.dart';
 import 'package:catbreeds/domain/domain.dart';
 import 'package:catbreeds/ui/ui.dart';
 import 'package:country_flags/country_flags.dart';
@@ -11,7 +10,6 @@ class DetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('cat.indoor:: ${cat.indoor}');
     const double toolbarHeight = 70;
     return Scaffold(
         backgroundColor: CustomColor.backgroundColor,
@@ -35,7 +33,10 @@ class DetailView extends StatelessWidget {
             child: Stack(
               children: [
                 (!cat.hasImage)
-                    ? CatCardImageLoader()
+                    ? CatCardImageLoader(
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        width: MediaQuery.of(context).size.width,
+                      )
                     : SizedBox(
                         height: MediaQuery.of(context).size.height * 0.5,
                         width: MediaQuery.of(context).size.width,
@@ -150,7 +151,7 @@ class DetailView extends StatelessWidget {
                                   color: Colors.blue,
                                   padding: EdgeInsets.all(6),
                                 ),
-                                const SizedBox(width: 8),
+                                const SizedBox(width: 4),
                                 ChipWithIcon(
                                   value: cat.suppresedTail.toBoolean
                                       ? 'Suppressed Tail'
@@ -172,7 +173,7 @@ class DetailView extends StatelessWidget {
                                   color: Colors.orange,
                                   padding: EdgeInsets.all(6),
                                 ),
-                                const SizedBox(width: 8),
+                                const SizedBox(width: 4),
                                 ChipWithIcon(
                                   value:
                                       cat.indoor.toBoolean ? 'Laps' : 'No laps',
@@ -181,7 +182,7 @@ class DetailView extends StatelessWidget {
                                   shrink: true,
                                   padding: EdgeInsets.all(6),
                                 ),
-                                const SizedBox(width: 8),
+                                const SizedBox(width: 4),
                                 ChipWithIcon(
                                   value: cat.shortLegs.toBoolean
                                       ? 'Short Legs'

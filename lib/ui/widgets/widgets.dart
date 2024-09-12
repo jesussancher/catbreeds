@@ -6,4 +6,4 @@ export 'chip_with_icon.dart';
 export 'chip.dart';
 export 'custom_icon.dart';
 export 'dummy_search_bar.dart';
-export 'generic_traits_charts.dart';
+export 'genetic_traits_charts.dart';

@@ -41,14 +41,20 @@ class CatCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   (!cat.hasImage)
-                      ? CatCardImageLoader()
+                      ? CatCardImageLoader(
+                          height: 140,
+                          width: MediaQuery.of(context).size.width * 0.33,
+                        )
                       : SizedBox(
                           height: cardHeight,
                           width: MediaQuery.of(context).size.width * 0.33,
                           child: CachedImage(
                             url: cat.imageUrlJPG!,
                             altUrl: cat.imageUrlPNG!,
-                            placeholder: CatCardImageLoader(),
+                            placeholder: CatCardImageLoader(
+                              height: 140,
+                              width: MediaQuery.of(context).size.width * 0.33,
+                            ),
                           ),
                         ),
                   Container(
