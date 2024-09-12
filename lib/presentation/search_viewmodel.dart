@@ -23,11 +23,6 @@ class SearchViewModel extends BaseViewModel {
     _initRandomizeDummyCatName();
   }
 
-  /// Focuses the input field using the provided [FocusNode].
-  void focusInput(BuildContext context, FocusNode focusNode) {
-    FocusScope.of(context).requestFocus(focusNode);
-  }
-
   /// Initiates a search with the given [searchText].
   void onSearch(String searchText) async {
     final Response<List<Cat>> response =
