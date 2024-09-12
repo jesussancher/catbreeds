@@ -1,8 +1,4 @@
-import 'package:catbreeds/domain/models/params/all_cats_params.dart';
-import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/domain/models/network/response.dart';
-import 'package:catbreeds/domain/repositories/i_cats_remote_repository.dart';
-import 'package:catbreeds/domain/usecases/core/future_query_usecase.dart';
+import 'package:catbreeds/domain/domain.dart';
 
 class FetchAllCatsPaginatedUseCase
     extends FutureQueryUseCase<Response<List<Cat>>, AllCatsParams> {

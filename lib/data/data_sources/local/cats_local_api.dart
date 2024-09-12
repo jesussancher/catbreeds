@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:catbreeds/data/data_sources/local/i_cats_local_api.dart';
-import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/domain/models/params/search_params.dart';
-import 'package:catbreeds/domain/models/params/set_cats_list_params.dart';
+import 'package:catbreeds/data/data_sources/data_sources.dart';
+import 'package:catbreeds/domain/domain.dart';
 import 'package:rxdart/subjects.dart';
 
 class CatsLocalApi implements ICatsLocalApi {

@@ -1,6 +1,5 @@
-import 'package:catbreeds/core/assets/colors.dart';
-import 'package:catbreeds/ui/widgets/chip.dart';
-import 'package:catbreeds/ui/widgets/custom_icon.dart';
+import 'package:catbreeds/core/core.dart';
+import 'package:catbreeds/ui/ui.dart';
 import 'package:flutter/material.dart';
 
 class ChipWithIcon extends StatelessWidget {

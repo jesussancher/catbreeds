@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:catbreeds/core/assets/colors.dart';
-import 'package:catbreeds/core/assets/images_manager.dart';
-import 'package:catbreeds/ui/pages/home_view.dart';
+import 'package:catbreeds/core/core.dart';
+import 'package:catbreeds/ui/ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 

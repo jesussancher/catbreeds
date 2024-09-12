@@ -1,7 +1,4 @@
-import 'package:catbreeds/domain/models/params/set_cats_list_params.dart';
-import 'package:catbreeds/domain/repositories/i_cats_local_repository.dart';
-
-import 'package:catbreeds/domain/usecases/core/future_command_usecase.dart';
+import 'package:catbreeds/domain/domain.dart';
 
 class SetAllCatsUseCase extends FutureCommandUseCase<SetCatsListParams> {
   final ICatsLocalRepository repository;

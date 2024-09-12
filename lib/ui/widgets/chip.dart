@@ -1,4 +1,4 @@
-import 'package:catbreeds/core/assets/colors.dart';
+import 'package:catbreeds/core/core.dart';
 import 'package:flutter/material.dart';
 
 class ChipWidget extends StatelessWidget {

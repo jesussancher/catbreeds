@@ -1,5 +1,5 @@
-import 'package:catbreeds/core/assets/colors.dart';
-import 'package:catbreeds/domain/models/cat.dart';
+import 'package:catbreeds/core/core.dart';
+import 'package:catbreeds/domain/domain.dart';
 import 'package:flutter/material.dart';
 
 class BehaviorAndPersonalityTable extends StatelessWidget {

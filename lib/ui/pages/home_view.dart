@@ -1,9 +1,7 @@
-import 'package:catbreeds/core/assets/colors.dart';
-import 'package:catbreeds/core/assets/images_manager.dart';
-import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/presentation/home_viewmodel.dart';
-import 'package:catbreeds/ui/widgets/cat_card.dart';
-import 'package:catbreeds/ui/widgets/dummy_search_bar.dart';
+import 'package:catbreeds/core/core.dart';
+import 'package:catbreeds/domain/domain.dart';
+import 'package:catbreeds/presentation/presentation.dart';
+import 'package:catbreeds/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';

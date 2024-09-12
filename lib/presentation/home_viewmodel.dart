@@ -1,15 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:catbreeds/domain/models/params/all_cats_params.dart';
-import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/domain/models/network/response.dart';
-import 'package:catbreeds/domain/models/params/set_cats_list_params.dart';
-import 'package:catbreeds/domain/usecases/fetch_all_cats_paginated_usecase.dart';
-import 'package:catbreeds/domain/usecases/set_all_cats_usecase.dart';
-import 'package:catbreeds/presentation/base_viewmodel.dart';
-import 'package:flutter/material.dart';
+import 'package:catbreeds/domain/domain.dart';
+import 'package:catbreeds/presentation/presentation.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:flutter/material.dart';
 
 class HomeViewModel extends BaseViewModel {
   final FetchAllCatsPaginatedUseCase _fetchAllCatsPaginatedUseCase;

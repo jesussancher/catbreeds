@@ -1,10 +1,7 @@
 import 'dart:async';
 
-import 'package:catbreeds/data/data_sources/local/i_cats_local_api.dart';
-import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/domain/models/params/search_params.dart';
-import 'package:catbreeds/domain/models/params/set_cats_list_params.dart';
-import 'package:catbreeds/domain/repositories/i_cats_local_repository.dart';
+import 'package:catbreeds/domain/domain.dart';
+import 'package:catbreeds/data/data_sources/data_sources.dart';
 
 class CatsLocalRepository implements ICatsLocalRepository {
   final ICatsLocalApi catsApi;

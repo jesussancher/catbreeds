@@ -1,11 +1,7 @@
 import 'dart:async';
 
-import 'package:catbreeds/data/data_sources/remote/i_cats_remote_api.dart';
-import 'package:catbreeds/domain/models/params/all_cats_params.dart';
-import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/domain/models/network/response.dart';
-import 'package:catbreeds/domain/models/params/search_params.dart';
-import 'package:catbreeds/domain/repositories/i_cats_remote_repository.dart';
+import 'package:catbreeds/data/data_sources/data_sources.dart';
+import 'package:catbreeds/domain/domain.dart';
 
 class CatsRemoteRepository implements ICatsRemoteRepository {
   final ICatsRemoteApi catsApi;

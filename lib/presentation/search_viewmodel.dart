@@ -1,13 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:catbreeds/domain/models/cat.dart';
-import 'package:catbreeds/domain/models/network/response.dart';
-import 'package:catbreeds/domain/models/params/no_param.dart';
-import 'package:catbreeds/domain/models/params/search_params.dart';
-import 'package:catbreeds/domain/usecases/get_all_cats_usecase.dart';
-import 'package:catbreeds/domain/usecases/search_cats_usecase.dart';
-import 'package:catbreeds/presentation/base_viewmodel.dart';
+import 'package:catbreeds/domain/domain.dart';
+import 'package:catbreeds/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 
 class SearchViewModel extends BaseViewModel {
